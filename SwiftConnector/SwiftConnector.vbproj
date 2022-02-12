@@ -31,16 +31,16 @@
     </StartupObject>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
-    <InstallUrl />
+    <InstallUrl>https://github.com/beatofangel/SwiftConnector/tree/master/SwiftConnector/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <ApplicationVersion>1.0.1.1</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
-    <IsWebBootstrapper>False</IsWebBootstrapper>
     <ProductName>SwiftConnector</ProductName>
     <PublisherName />
     <SupportUrl />
@@ -287,9 +287,170 @@
     <Content Include="Log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="publish\.gitattributes" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Dapper.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\FastMember.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Local\index.html.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Log4net.config.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\log4net.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Microsoft.Office.Tools.Common.v4.0.Utilities.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Microsoft.Web.WebView2.Core.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Microsoft.Web.WebView2.WinForms.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Microsoft.Web.WebView2.Wpf.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Microsoft.Win32.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\MySqlConnector.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\netstandard.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Oracle.ManagedDataAccess.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\de.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\en.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\es.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\fr.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\ja.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\ko.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\pt.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\ru.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\de.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\en.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\es.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\fr.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\ja.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\ko.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\pt.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\ru.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\squared\zh.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\lang\zh.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\mysql_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\mysql_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\mysql_large_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\mysql_mini_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\oracle_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\oracle_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\oracle_large_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\oracle_mini_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\postgresql_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\postgresql_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\postgresql_large_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\postgresql_mini_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlite_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlite_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlite_large_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlite_mini_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlserver_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlserver_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlserver_large_64.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Resources\Icon\sqlserver_mini_32.png.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\runtimes\win-arm64\native\WebView2Loader.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\runtimes\win-x64\native\WebView2Loader.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\runtimes\win-x86\native\WebView2Loader.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\SwiftConnector.dll.config.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\SwiftConnector.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\SwiftConnector.dll.manifest" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\SwiftConnector.vsto" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.AppContext.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Buffers.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Collections.Concurrent.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Collections.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Collections.NonGeneric.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Collections.Specialized.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ComponentModel.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ComponentModel.EventBasedAsync.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ComponentModel.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ComponentModel.TypeConverter.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Console.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Data.Common.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Data.SQLite.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.Contracts.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.Debug.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.FileVersionInfo.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.Process.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.StackTrace.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.TextWriterTraceListener.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.Tools.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.TraceSource.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Diagnostics.Tracing.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Drawing.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Dynamic.Runtime.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Globalization.Calendars.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Globalization.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Globalization.Extensions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.Compression.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.Compression.ZipFile.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.FileSystem.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.FileSystem.DriveInfo.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.FileSystem.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.FileSystem.Watcher.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.IsolatedStorage.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.MemoryMappedFiles.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.Pipes.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.IO.UnmanagedMemoryStream.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Linq.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Linq.Expressions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Linq.Parallel.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Linq.Queryable.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Memory.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Http.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.NameResolution.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.NetworkInformation.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Ping.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Requests.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Security.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.Sockets.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.WebHeaderCollection.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.WebSockets.Client.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Net.WebSockets.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Numerics.Vectors.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ObjectModel.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Reflection.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Reflection.Extensions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Reflection.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Resources.Reader.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Resources.ResourceManager.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Resources.Writer.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.CompilerServices.Unsafe.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.CompilerServices.VisualC.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Extensions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Handles.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.InteropServices.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.InteropServices.RuntimeInformation.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Numerics.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Serialization.Formatters.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Serialization.Json.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Serialization.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Runtime.Serialization.Xml.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Claims.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Cryptography.Algorithms.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Cryptography.Csp.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Cryptography.Encoding.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Cryptography.Primitives.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Cryptography.X509Certificates.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.Principal.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Security.SecureString.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Text.Encoding.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Text.Encoding.Extensions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Text.RegularExpressions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Overlapped.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Tasks.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Tasks.Extensions.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Tasks.Parallel.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Thread.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.ThreadPool.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Threading.Timer.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.ValueTuple.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.ReaderWriter.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.XDocument.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.XmlDocument.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.XmlSerializer.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.XPath.dll.deploy" />
+    <None Include="publish\Application Files\SwiftConnector_1_0_1_0\System.Xml.XPath.XDocument.dll.deploy" />
+    <None Include="publish\SwiftConnector.vsto" />
     <None Include="Resources\Font\la-regular-400.ttf" />
     <None Include="Resources\Font\MaterialIcons-Regular.ttf" />
-    <None Include="SwiftConnector_TemporaryKey.pfx" />
+    <None Include="SwiftConnectorCert.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.vb</DependentUpon>
     </None>
@@ -336,6 +497,7 @@
     <Content Include="..\..\..\VSCode\swift-connector-ui\dist\index.html">
       <Link>Local\index.html</Link>
     </Content>
+    <Content Include="publish\setup.exe" />
     <Content Include="Resources\Icon\lang\de.png" />
     <Content Include="Resources\Icon\lang\en.png" />
     <Content Include="Resources\Icon\lang\es.png" />
@@ -420,10 +582,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SwiftConnector_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SwiftConnectorCert.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D68C3577B581B880358505A06D0B7BC4F269B9F8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>719D4396828279E4A4F3C27CF207D90192892DF0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a Visual Basic project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
@@ -434,8 +596,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="vb" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{DCFE8D25-4715-4C33-9EAB-A34A9EBC9544}" />
-        <Host Name="Excel" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.vb" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.vb" />
+        <Host Name="Excel" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.vb" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.vb" PublishedHash="501F60F3B8BAF1916C7D50AECC5342A51A6B73BE" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
