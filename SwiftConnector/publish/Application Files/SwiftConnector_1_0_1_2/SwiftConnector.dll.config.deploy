@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<appSettings>
+		<add key="TableCommentLikeQueryRowLimit" value="20" />
+		<add key="InternalConfigDatabase" value="%UserProfile%\Documents\SwiftConnector\userdata.db" />
+		<add key="WebView2UserDataFolder" value="%UserProfile%\Documents\SwiftConnector\temp\"/>
+		<add key="WebView2DevToolsEnabled" value="true"/>
+		<add key ="VirtualHost" value="false"/>
+		<add key ="Host" value="localhost"/>
+		<add key ="Port" value="8081"/>
+		<add key="ClientSettingsProvider.ServiceUri" value="" />
+	</appSettings>
+</configuration>

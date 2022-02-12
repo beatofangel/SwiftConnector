@@ -19,6 +19,7 @@ Imports log4net
 <Assembly: log4net.Config.XmlConfigurator(ConfigFile:="Log4net.config", Watch:=True)>
 Public Class ThisAddIn
 
+    Protected Shared logger As ILog = LogManager.GetLogger(Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
     'Private langCode As Integer
 
@@ -129,6 +130,9 @@ Public Class ThisAddIn
     End Property
 
     Private Sub ThisAddIn_Startup() Handles Me.Startup
+
+        logger.Debug("ThisAddIn_Startup")
+
         'langCode = Application.LanguageSettings.LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI)
         Windows.Forms.Application.SetUnhandledExceptionMode(Windows.Forms.UnhandledExceptionMode.CatchException)
         _hotKeys = New XlHotKeys()

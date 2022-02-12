@@ -31,8 +31,13 @@ Public Class SQLiteBaseService
     ''' </summary>
     ''' <param name="callback">回调方法（用于通过<see cref="DbCommand"/>和<see cref="DbConnection"/>进行具体的数据库操作）</param>
     Protected Sub doConnect(callback As Action(Of DbCommand, DbConnection))
+
+        logger.Debug("doConnect start")
+
         Dim sqlConnectionSb = New SQLiteConnectionStringBuilder With {.DataSource = InternalConfigDatabase}
+        logger.Debug(String.Format("connect to {0}", sqlConnectionSb.ToString()))
         Using conn As DbConnection = New SQLiteConnection(sqlConnectionSb.ToString())
+            logger.Debug("connected")
             conn.Open()
             Using trans As DbTransaction = conn.BeginTransaction()
                 Try
@@ -46,6 +51,8 @@ Public Class SQLiteBaseService
                 End Try
             End Using
         End Using
+
+        logger.Debug("doConnect end")
     End Sub
 
     ''' <summary>

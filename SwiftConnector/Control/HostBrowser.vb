@@ -101,6 +101,7 @@ Public Class HostBrowser
             AddHandler InnerBrowser.WebMessageReceived, AddressOf WebMessageReceived
         End If
         'InnerBrowser.CoreWebView2.Navigate("https://www.baidu.com")
+        InnerBrowser.CoreWebView2.Settings.IsStatusBarEnabled = False
         InnerBrowser.Source = New UriBuilder With {
             .Scheme = "http",
             .Host = Host,
