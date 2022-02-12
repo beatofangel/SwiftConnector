@@ -36,21 +36,26 @@ Public Class SQLiteBaseService
 
         Dim sqlConnectionSb = New SQLiteConnectionStringBuilder With {.DataSource = InternalConfigDatabase}
         logger.Debug(String.Format("connect to {0}", sqlConnectionSb.ToString()))
-        Using conn As DbConnection = New SQLiteConnection(sqlConnectionSb.ToString())
-            logger.Debug("connected")
-            conn.Open()
-            Using trans As DbTransaction = conn.BeginTransaction()
-                Try
-                    Using comm As DbCommand = conn.CreateCommand()
-                        callback.Invoke(comm, conn)
-                    End Using
-                    trans.Commit()
-                Catch ex As Exception
-                    trans.Rollback()
-                    Throw
-                End Try
+        Try
+            Using conn As DbConnection = New SQLiteConnection(sqlConnectionSb.ToString())
+                logger.Debug("connected")
+                conn.Open()
+                Using trans As DbTransaction = conn.BeginTransaction()
+                    Try
+                        Using comm As DbCommand = conn.CreateCommand()
+                            callback.Invoke(comm, conn)
+                        End Using
+                        trans.Commit()
+                    Catch ex As Exception
+                        trans.Rollback()
+                        Throw
+                    End Try
+                End Using
             End Using
-        End Using
+        Catch ex As Exception
+            logger.Error(ex.Message)
+            logger.Error(ex.StackTrace)
+        End Try
 
         logger.Debug("doConnect end")
     End Sub
