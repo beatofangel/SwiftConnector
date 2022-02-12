@@ -36,7 +36,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.8</ApplicationVersion>
+    <ApplicationVersion>1.0.1.10</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -299,7 +299,7 @@
     <Content Include="Local\img\sqlserver.2eb732d1.svg" />
     <Content Include="Local\img\stamp-texture.72e4f534.png" />
     <Content Include="Local\index.html" />
-    <Content Include="Local\js\app.dacac105.js" />
+    <Content Include="Local\js\app.843765d6.js" />
     <Content Include="Local\js\chunk-1c021b75.e43cbea7.js" />
     <Content Include="Local\js\chunk-20a7498c.31445ae2.js" />
     <Content Include="Local\js\chunk-2d22d746.e3c876cf.js" />
@@ -314,7 +314,7 @@
     <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2" />
     <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf" />
     <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff" />
-    <None Include="Local\js\app.dacac105.js.map" />
+    <None Include="Local\js\app.843765d6.js.map" />
     <None Include="Local\js\chunk-1c021b75.e43cbea7.js.map" />
     <None Include="Local\js\chunk-20a7498c.31445ae2.js.map" />
     <None Include="Local\js\chunk-2d22d746.e3c876cf.js.map" />

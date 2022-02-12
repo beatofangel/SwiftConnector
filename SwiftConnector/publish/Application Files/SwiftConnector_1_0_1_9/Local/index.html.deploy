@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>swift-connector-ui</title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"><link href="css/chunk-1c021b75.68ea5abd.css" rel="prefetch"><link href="css/chunk-20a7498c.6139b05d.css" rel="prefetch"><link href="js/chunk-1c021b75.e43cbea7.js" rel="prefetch"><link href="js/chunk-20a7498c.31445ae2.js" rel="prefetch"><link href="js/chunk-2d22d746.e3c876cf.js" rel="prefetch"><link href="js/chunk-712f2df5.6501c4ef.js" rel="prefetch"><link href="css/chunk-vendors.754fd99c.css" rel="preload" as="style"><link href="js/app.843765d6.js" rel="preload" as="script"><link href="js/chunk-vendors.1a17a102.js" rel="preload" as="script"><link href="css/chunk-vendors.754fd99c.css" rel="stylesheet"></head><style>html {
+      overflow-y: hidden !important;
+      user-select: none;
+    }
+    #app{
+      height: calc(100vh);
+      overflow-y: auto;
+    }</style><body><noscript><strong>We're sorry but swift-connector-ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="js/chunk-vendors.1a17a102.js"></script><script src="js/app.843765d6.js"></script></body></html>
