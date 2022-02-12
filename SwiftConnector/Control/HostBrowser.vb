@@ -24,6 +24,7 @@ Imports System.Configuration
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports System.Web
+Imports log4net
 Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft
 Imports Newtonsoft.Json
@@ -33,6 +34,8 @@ Imports Newtonsoft.Json.Linq
 ''' 嵌入式浏览器，注意需要安装edge runtime https://developer.microsoft.com/en-us/microsoft-edge/webview2/
 ''' </summary>
 Public Class HostBrowser
+
+    Protected Shared logger As ILog = LogManager.GetLogger(Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
     Private dsService As New DatasourceService
 
@@ -76,8 +79,10 @@ Public Class HostBrowser
         If String.IsNullOrEmpty(Host) Then
             Host = ConfigurationManager.AppSettings.Get("Host")
             Port = Integer.Parse(ConfigurationManager.AppSettings.Get("Port"))
+            logger.Debug(String.Format("initialize host({0}) and port({1})", Host, Port))
         End If
         If InnerBrowser.CoreWebView2 Is Nothing Then
+            logger.Debug("initialize webview2")
             Dim env As Object
             Dim userDataFolder As String
             Dim webView2UserDataFolder As String = ConfigurationManager.AppSettings.Get("WebView2UserDataFolder")
@@ -97,6 +102,7 @@ Public Class HostBrowser
             ' 通过配置项判断是否为开发模式，开发模式：访问localhost:port，发布模式：访问虚拟主机映射
             If virtualHost Then
                 InnerBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(Host, Path.Combine(GetBasePath, "Local"), CoreWebView2HostResourceAccessKind.Allow)
+                logger.Debug(String.Format("enable virtual host with host({0}), folderPath({1})", Host, GetBasePath))
             End If
             AddHandler InnerBrowser.WebMessageReceived, AddressOf WebMessageReceived
         End If
@@ -112,6 +118,7 @@ Public Class HostBrowser
 
         If WebView2DevToolsEnabled Is Nothing Then
             WebView2DevToolsEnabled = Boolean.Parse(ConfigurationManager.AppSettings.Get("WebView2DevToolsEnabled"))
+            logger.Debug("enable devtools")
         End If
         If WebView2DevToolsEnabled Then
             InnerBrowser.CoreWebView2.OpenDevToolsWindow()
@@ -120,11 +127,11 @@ Public Class HostBrowser
 
     Private Sub WebMessageReceived(sender As Object, e As CoreWebView2WebMessageReceivedEventArgs)
         'Dim jsonObject = JObject.Parse(e.WebMessageAsJson)
+        logger.Debug(String.Format("received request({0})", e.WebMessageAsJson))
         Dim jsonString = JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(e.WebMessageAsJson)
         Dim api = jsonString("api")
         Dim args = If(jsonString.ContainsKey("args"), jsonString("args"), Nothing)
         Dim cb = If(jsonString.ContainsKey("callback"), jsonString("callback"), Nothing)
-        Diagnostics.Debug.Print(e.WebMessageAsJson)
         Select Case api
             Case "loadChangeLog"
                 DoResponse(cb, Function() JsonConvert.SerializeObject(New Response(True, data:=File.ReadAllText(Path.Combine(GetBasePath, "CHANGELOG.MD")))))
@@ -219,6 +226,7 @@ Public Class HostBrowser
     End Sub
 
     Private Sub DoResponse(callback As String, args As String)
+        logger.Debug(String.Format("return response({0})", callback))
         InnerBrowser.CoreWebView2.ExecuteScriptAsync(String.Format("{0}('{1}')", callback, HttpUtility.JavaScriptStringEncode(args)))
     End Sub
 
