@@ -36,7 +36,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.11</ApplicationVersion>
+    <ApplicationVersion>1.0.1.13</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -287,11 +287,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Local\css\chunk-1c021b75.68ea5abd.css" />
-    <Content Include="Local\css\chunk-20a7498c.6139b05d.css" />
+    <Content Include="Local\css\chunk-4e5eff74.ad5a73ea.css" />
     <Content Include="Local\css\chunk-vendors.754fd99c.css" />
     <Content Include="Local\favicon.ico" />
     <Content Include="Local\img\fontawesome-webfont.912ec66d.912ec66d.svg" />
-    <Content Include="Local\img\logo.82b9c7a5.png" />
     <Content Include="Local\img\mysql.e195f8c4.svg" />
     <Content Include="Local\img\oracle.eeed200a.svg" />
     <Content Include="Local\img\postgresql.f9b322c2.svg" />
@@ -299,11 +298,11 @@
     <Content Include="Local\img\sqlserver.2eb732d1.svg" />
     <Content Include="Local\img\stamp-texture.72e4f534.png" />
     <Content Include="Local\index.html" />
-    <Content Include="Local\js\app.843765d6.js" />
+    <Content Include="Local\js\app.728c0fb0.js" />
     <Content Include="Local\js\chunk-1c021b75.e43cbea7.js" />
-    <Content Include="Local\js\chunk-20a7498c.31445ae2.js" />
+    <Content Include="Local\js\chunk-2d21a3d2.1da852db.js" />
     <Content Include="Local\js\chunk-2d22d746.e3c876cf.js" />
-    <Content Include="Local\js\chunk-712f2df5.6501c4ef.js" />
+    <Content Include="Local\js\chunk-4e5eff74.c0795dad.js" />
     <Content Include="Local\js\chunk-vendors.1a17a102.js" />
     <Content Include="Log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -314,11 +313,11 @@
     <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2" />
     <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf" />
     <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff" />
-    <None Include="Local\js\app.843765d6.js.map" />
+    <None Include="Local\js\app.728c0fb0.js.map" />
     <None Include="Local\js\chunk-1c021b75.e43cbea7.js.map" />
-    <None Include="Local\js\chunk-20a7498c.31445ae2.js.map" />
+    <None Include="Local\js\chunk-2d21a3d2.1da852db.js.map" />
     <None Include="Local\js\chunk-2d22d746.e3c876cf.js.map" />
-    <None Include="Local\js\chunk-712f2df5.6501c4ef.js.map" />
+    <None Include="Local\js\chunk-4e5eff74.c0795dad.js.map" />
     <None Include="Local\js\chunk-vendors.1a17a102.js.map" />
     <None Include="publish\.gitattributes" />
     <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Dapper.dll.deploy" />
@@ -615,7 +614,7 @@
     <ManifestKeyFile>SwiftConnectorCert.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>719D4396828279E4A4F3C27CF207D90192892DF0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>25DB71A6BA32D1DE027562E31B5477385ABD7BE8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
