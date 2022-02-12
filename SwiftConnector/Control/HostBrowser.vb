@@ -81,6 +81,12 @@ Public Class HostBrowser
             Port = Integer.Parse(ConfigurationManager.AppSettings.Get("Port"))
             logger.Debug(String.Format("initialize host({0}) and port({1})", Host, Port))
         End If
+
+        Dim virtualHost As Boolean = Boolean.Parse(ConfigurationManager.AppSettings.Get("VirtualHost"))
+        If virtualHost Then
+            Host = "swiftconnector"
+        End If
+
         If InnerBrowser.CoreWebView2 Is Nothing Then
             logger.Debug("initialize webview2")
             Dim env As Object
@@ -98,7 +104,6 @@ Public Class HostBrowser
             'Dim location As String = assemblyInfo.Location
             Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
             Dim basePath As String = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
-            Dim virtualHost As Boolean = Boolean.Parse(ConfigurationManager.AppSettings.Get("VirtualHost"))
             ' 通过配置项判断是否为开发模式，开发模式：访问localhost:port，发布模式：访问虚拟主机映射
             If virtualHost Then
                 InnerBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(Host, Path.Combine(GetBasePath, "Local"), CoreWebView2HostResourceAccessKind.Allow)
@@ -106,15 +111,19 @@ Public Class HostBrowser
             End If
             AddHandler InnerBrowser.WebMessageReceived, AddressOf WebMessageReceived
         End If
-        'InnerBrowser.CoreWebView2.Navigate("https://www.baidu.com")
-        InnerBrowser.CoreWebView2.Settings.IsStatusBarEnabled = False
-        InnerBrowser.Source = New UriBuilder With {
+
+        Dim uriBuilder = New UriBuilder With {
             .Scheme = "http",
             .Host = Host,
-            .Port = Port, '仅当virtualHost = false时有效
             .Path = "/",
             .Fragment = fragment
-        }.Uri
+        }
+        If Not virtualHost Then
+            uriBuilder.Port = Port '仅当virtualHost = false时有效
+        End If
+        'InnerBrowser.CoreWebView2.Navigate("https://www.baidu.com")
+        InnerBrowser.CoreWebView2.Settings.IsStatusBarEnabled = False
+        InnerBrowser.Source = uriBuilder.Uri
 
         If WebView2DevToolsEnabled Is Nothing Then
             WebView2DevToolsEnabled = Boolean.Parse(ConfigurationManager.AppSettings.Get("WebView2DevToolsEnabled"))
