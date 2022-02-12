@@ -34,7 +34,7 @@
     <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
-    <InstallUrl>https://github.com/beatofangel/SwiftConnector/tree/master/SwiftConnector/</InstallUrl>
+    <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
     <ApplicationVersion>1.0.1.1</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
@@ -284,9 +284,40 @@
     <None Include="CHANGELOG.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Local\css\chunk-1c021b75.68ea5abd.css" />
+    <Content Include="Local\css\chunk-20a7498c.6139b05d.css" />
+    <Content Include="Local\css\chunk-vendors.754fd99c.css" />
+    <Content Include="Local\favicon.ico" />
+    <Content Include="Local\img\fontawesome-webfont.912ec66d.912ec66d.svg" />
+    <Content Include="Local\img\logo.82b9c7a5.png" />
+    <Content Include="Local\img\mysql.e195f8c4.svg" />
+    <Content Include="Local\img\oracle.eeed200a.svg" />
+    <Content Include="Local\img\postgresql.f9b322c2.svg" />
+    <Content Include="Local\img\sqlite.bfcf73d5.svg" />
+    <Content Include="Local\img\sqlserver.2eb732d1.svg" />
+    <Content Include="Local\img\stamp-texture.72e4f534.png" />
+    <Content Include="Local\index.html" />
+    <Content Include="Local\js\app.dacac105.js" />
+    <Content Include="Local\js\chunk-1c021b75.e43cbea7.js" />
+    <Content Include="Local\js\chunk-20a7498c.31445ae2.js" />
+    <Content Include="Local\js\chunk-2d22d746.e3c876cf.js" />
+    <Content Include="Local\js\chunk-712f2df5.6501c4ef.js" />
+    <Content Include="Local\js\chunk-vendors.1a17a102.js" />
     <Content Include="Log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Local\fonts\element-icons.535877f5.535877f5.woff" />
+    <Content Include="Local\fonts\element-icons.732389de.732389de.ttf" />
+    <Content Include="Local\fonts\fontawesome-webfont.674f50d2.674f50d2.eot" />
+    <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2" />
+    <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf" />
+    <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff" />
+    <None Include="Local\js\app.dacac105.js.map" />
+    <None Include="Local\js\chunk-1c021b75.e43cbea7.js.map" />
+    <None Include="Local\js\chunk-20a7498c.31445ae2.js.map" />
+    <None Include="Local\js\chunk-2d22d746.e3c876cf.js.map" />
+    <None Include="Local\js\chunk-712f2df5.6501c4ef.js.map" />
+    <None Include="Local\js\chunk-vendors.1a17a102.js.map" />
     <None Include="publish\.gitattributes" />
     <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Dapper.dll.deploy" />
     <None Include="publish\Application Files\SwiftConnector_1_0_1_0\FastMember.dll.deploy" />
@@ -489,14 +520,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="userdata.db">
+    <Content Include="userdata.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\VSCode\swift-connector-ui\dist\index.html">
-      <Link>Local\index.html</Link>
-    </Content>
     <Content Include="publish\setup.exe" />
     <Content Include="Resources\Icon\lang\de.png" />
     <Content Include="Resources\Icon\lang\en.png" />
@@ -597,7 +625,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="vb" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{DCFE8D25-4715-4C33-9EAB-A34A9EBC9544}" />
         <Host Name="Excel" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.vb" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.vb" PublishedHash="501F60F3B8BAF1916C7D50AECC5342A51A6B73BE" />
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.vb" CanonicalName="AddIn" PublishedHash="501F60F3B8BAF1916C7D50AECC5342A51A6B73BE" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.vb" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
