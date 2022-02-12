@@ -115,7 +115,7 @@ Public Class HostBrowser
         Dim uriBuilder = New UriBuilder With {
             .Scheme = "http",
             .Host = Host,
-            .Path = "/",
+            .Path = "/index.html",
             .Fragment = fragment
         }
         If Not virtualHost Then
