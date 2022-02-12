@@ -36,7 +36,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.10</ApplicationVersion>
+    <ApplicationVersion>1.0.1.11</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -283,9 +283,9 @@
     </Compile>
     <None Include=".editorconfig" />
     <None Include="App.config" />
-    <None Include="CHANGELOG.MD">
+    <Content Include="CHANGELOG.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="Local\css\chunk-1c021b75.68ea5abd.css" />
     <Content Include="Local\css\chunk-20a7498c.6139b05d.css" />
     <Content Include="Local\css\chunk-vendors.754fd99c.css" />

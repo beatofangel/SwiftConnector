@@ -68,7 +68,7 @@ Public Class ThisAddIn
             Dim taskPane = WbCtp.Where(Function(kv) kv.Key = wb.FullName).FirstOrDefault().Value
             If taskPane Is Nothing Then
                 Dim hb As New HostBrowser
-                _ctpSettings = CustomTaskPanes.Add(hb, "test")
+                _ctpSettings = CustomTaskPanes.Add(hb, textService.GetTextByProperty(TextType.TT_TP_SETTINGS))
                 _ctpSettings.Width = 554
                 _ctpSettings.DockPosition = Microsoft.Office.Core.MsoCTPDockPosition.msoCTPDockPositionRight
                 AddHandler _ctpSettings.VisibleChanged, AddressOf MyRibbon.CtpSettings_VisibleChanged
