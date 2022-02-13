@@ -286,39 +286,147 @@
     <Content Include="CHANGELOG.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\css\chunk-1c021b75.68ea5abd.css" />
-    <Content Include="Local\css\chunk-4e5eff74.ad5a73ea.css" />
-    <Content Include="Local\css\chunk-vendors.754fd99c.css" />
-    <Content Include="Local\favicon.ico" />
-    <Content Include="Local\img\fontawesome-webfont.912ec66d.912ec66d.svg" />
-    <Content Include="Local\img\mysql.e195f8c4.svg" />
-    <Content Include="Local\img\oracle.eeed200a.svg" />
-    <Content Include="Local\img\postgresql.f9b322c2.svg" />
-    <Content Include="Local\img\sqlite.bfcf73d5.svg" />
-    <Content Include="Local\img\sqlserver.2eb732d1.svg" />
-    <Content Include="Local\img\stamp-texture.72e4f534.png" />
-    <Content Include="Local\index.html" />
-    <Content Include="Local\js\app.728c0fb0.js" />
-    <Content Include="Local\js\chunk-1c021b75.e43cbea7.js" />
-    <Content Include="Local\js\chunk-2d21a3d2.1da852db.js" />
-    <Content Include="Local\js\chunk-2d22d746.e3c876cf.js" />
-    <Content Include="Local\js\chunk-4e5eff74.c0795dad.js" />
-    <Content Include="Local\js\chunk-vendors.1a17a102.js" />
+    <Content Include="Local\css\chunk-1c021b75.68ea5abd.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\css\chunk-4e5eff74.ad5a73ea.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\css\chunk-vendors.754fd99c.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\fontawesome-webfont.912ec66d.912ec66d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\mysql.e195f8c4.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\oracle.eeed200a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\postgresql.f9b322c2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\sqlite.bfcf73d5.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\sqlserver.2eb732d1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\img\stamp-texture.72e4f534.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\app.728c0fb0.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-1c021b75.68ea5abd.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-1c021b75.e43cbea7.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-2d21a3d2.1da852db.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-2d22d746.e3c876cf.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-4e5eff74.ad5a73ea.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-4e5eff74.c0795dad.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-vendors.1a17a102.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-vendors.754fd99c.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\fontawesome-webfont.912ec66d.912ec66d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\mysql.e195f8c4.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\oracle.eeed200a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\postgresql.f9b322c2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\sqlite.bfcf73d5.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\sqlserver.2eb732d1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\stamp-texture.72e4f534.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\fonts\element-icons.535877f5.535877f5.woff" />
-    <Content Include="Local\fonts\element-icons.732389de.732389de.ttf" />
-    <Content Include="Local\fonts\fontawesome-webfont.674f50d2.674f50d2.eot" />
-    <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2" />
-    <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf" />
-    <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff" />
-    <None Include="Local\js\app.728c0fb0.js.map" />
-    <None Include="Local\js\chunk-1c021b75.e43cbea7.js.map" />
-    <None Include="Local\js\chunk-2d21a3d2.1da852db.js.map" />
-    <None Include="Local\js\chunk-2d22d746.e3c876cf.js.map" />
-    <None Include="Local\js\chunk-4e5eff74.c0795dad.js.map" />
-    <None Include="Local\js\chunk-vendors.1a17a102.js.map" />
+    <Content Include="Local\fonts\element-icons.535877f5.535877f5.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\fonts\element-icons.732389de.732389de.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\fonts\fontawesome-webfont.674f50d2.674f50d2.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Local\js\app.728c0fb0.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Local\js\chunk-1c021b75.e43cbea7.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Local\js\chunk-2d21a3d2.1da852db.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Local\js\chunk-2d22d746.e3c876cf.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Local\js\chunk-4e5eff74.c0795dad.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Local\js\chunk-vendors.1a17a102.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Local\js\element-icons.535877f5.535877f5.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\element-icons.732389de.732389de.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\fontawesome-webfont.af7ae505.af7ae505.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\fontawesome-webfont.674f50d2.674f50d2.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\fontawesome-webfont.b06871f2.b06871f2.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\fontawesome-webfont.fee66e71.fee66e71.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="publish\.gitattributes" />
     <None Include="publish\Application Files\SwiftConnector_1_0_1_0\Dapper.dll.deploy" />
     <None Include="publish\Application Files\SwiftConnector_1_0_1_0\FastMember.dll.deploy" />

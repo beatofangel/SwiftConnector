@@ -37,7 +37,7 @@ Public Class Ribbon
 
     Private ribbon As Office.IRibbonUI
     Private datasources As New List(Of DataSource)
-    Private curDsType As DataSourceType = DataSourceType.Unknown
+    'Private curDsType As DataSourceType = DataSourceType.Unknown
 
     Protected Shared ReadOnly Property StyleService As StyleService = New StyleService()
 
@@ -747,9 +747,9 @@ Public Class Ribbon
         '    frm.ShowDialog()
         'End Using
 
-        Using frm = New FrmConnections
-            frm.ShowDialog()
-        End Using
+        'Using frm = New FrmConnections
+        Globals.ThisAddIn.DlgConnections.ShowDialog()
+        'End Using
 
         ' update ribbon
         _curDataSource = Nothing

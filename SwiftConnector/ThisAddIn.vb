@@ -23,6 +23,17 @@ Public Class ThisAddIn
 
     'Private langCode As Integer
 
+    Private _dlgConnections As FrmConnections
+
+    Public ReadOnly Property DlgConnections As FrmConnections
+        Get
+            If _dlgConnections Is Nothing Then
+                _dlgConnections = New FrmConnections()
+            End If
+            Return _dlgConnections
+        End Get
+    End Property
+
     Private _myRibbon As Ribbon
 
     Public ReadOnly Property MyRibbon As Ribbon
