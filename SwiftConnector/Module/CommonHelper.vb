@@ -113,17 +113,9 @@ Module CommonHelper
     ''' </summary>
     ''' <param name="ds"></param>
     Public Sub TestConnection(ds As DataSource)
-        Dim msg As String
-        Try
-            Using conn = DbConnectionFactory.CreateConnection(ds)
-                conn.Open()
-                msg = "Success"
-            End Using
-        Catch ex As Exception
-            msg = "Error: " & ex.Message
-        End Try
-
-        MsgBox(msg)
+        Using conn = DbConnectionFactory.CreateConnection(ds)
+            conn.Open()
+        End Using
     End Sub
 
     Private loadedFontFileList As New List(Of String)

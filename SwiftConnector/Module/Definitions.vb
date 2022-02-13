@@ -142,12 +142,14 @@ Public Module Definitions
     End Enum
 
     Public Class Response
-        Public Sub New(success As Boolean, Optional data As Object = Nothing, Optional message As String = Nothing)
+        Public Sub New(success As Boolean, api As String, Optional data As Object = Nothing, Optional message As String = Nothing)
             Me.Success = success
+            Me.Api = api
             Me.Data = data
             Me.Message = message
         End Sub
 
+        Public Property Api As String
         Public Property Success As Boolean
         Public Property Data As Object
         Public Property Message As String

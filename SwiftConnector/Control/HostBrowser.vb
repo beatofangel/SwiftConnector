@@ -43,8 +43,10 @@ Public Class HostBrowser
     'Private Const HOST As String = "dbtoolsaddin.local"
     'Private Const HOST As String = "localhost"
     'Private Const PORT As Integer = 8081
-    Private Property Host As String
-    Private Property Port As Integer
+    Private Property HB_HOST As String
+    Private Property HB_PORT As Integer
+    Private Property HB_SCHEME As String
+    Private Property HB_PATH As String
     Private Property WebView2DevToolsEnabled As Boolean?
     Private _fragment As String = ""
 
@@ -76,15 +78,17 @@ Public Class HostBrowser
     End Sub
 
     Private Async Function Init(Optional fragment As String = "") As Threading.Tasks.Task
-        If String.IsNullOrEmpty(Host) Then
-            Host = ConfigurationManager.AppSettings.Get("Host")
-            Port = Integer.Parse(ConfigurationManager.AppSettings.Get("Port"))
-            logger.Debug(String.Format("initialize host({0}) and port({1})", Host, Port))
+        If String.IsNullOrEmpty(HB_HOST) Then
+            HB_HOST = ConfigurationManager.AppSettings.Get("Host")
+            HB_PORT = Integer.Parse(ConfigurationManager.AppSettings.Get("Port"))
+            HB_SCHEME = ConfigurationManager.AppSettings.Get("Scheme")
+            HB_PATH = ConfigurationManager.AppSettings.Get("Path")
+            logger.Debug(String.Format("initialize host({0}) and port({1})", HB_HOST, HB_PORT))
         End If
 
         Dim virtualHost As Boolean = Boolean.Parse(ConfigurationManager.AppSettings.Get("VirtualHost"))
         If virtualHost Then
-            Host = "swiftconnector"
+            HB_HOST = "swiftconnector"
         End If
 
         If InnerBrowser.CoreWebView2 Is Nothing Then
@@ -106,20 +110,20 @@ Public Class HostBrowser
             Dim basePath As String = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
             ' 通过配置项判断是否为开发模式，开发模式：访问localhost:port，发布模式：访问虚拟主机映射
             If virtualHost Then
-                InnerBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(Host, Path.Combine(GetBasePath, "Local"), CoreWebView2HostResourceAccessKind.Allow)
-                logger.Debug(String.Format("enable virtual host with host({0}), folderPath({1})", Host, GetBasePath))
+                InnerBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(HB_HOST, Path.Combine(GetBasePath, "Local"), CoreWebView2HostResourceAccessKind.Allow)
+                logger.Debug(String.Format("enable virtual host with host({0}), folderPath({1})", HB_HOST, GetBasePath))
             End If
             AddHandler InnerBrowser.WebMessageReceived, AddressOf WebMessageReceived
         End If
 
         Dim uriBuilder = New UriBuilder With {
-            .Scheme = "http",
-            .Host = Host,
-            .Path = "/index.html",
+            .Scheme = HB_SCHEME,
+            .Host = HB_HOST,
+            .Path = HB_PATH,
             .Fragment = fragment
         }
         If Not virtualHost Then
-            uriBuilder.Port = Port '仅当virtualHost = false时有效
+            uriBuilder.Port = HB_PORT '仅当virtualHost = false时有效
         End If
         'InnerBrowser.CoreWebView2.Navigate("https://www.baidu.com")
         InnerBrowser.CoreWebView2.Settings.IsStatusBarEnabled = False
@@ -143,13 +147,13 @@ Public Class HostBrowser
         Dim cb = If(jsonString.ContainsKey("callback"), jsonString("callback"), Nothing)
         Select Case api
             Case "loadChangeLog"
-                DoResponse(cb, Function() JsonConvert.SerializeObject(New Response(True, data:=File.ReadAllText(Path.Combine(GetBasePath, "CHANGELOG.MD")))))
+                DoResponse(api, cb, Function() JsonConvert.SerializeObject(New Response(True, api, data:=File.ReadAllText(Path.Combine(GetBasePath, "CHANGELOG.MD")))))
             Case "loadConnections"
-                DoResponse(cb, Function() JsonConvert.SerializeObject(New Response(True, data:=dsService.FindAllDataSource())))
+                DoResponse(api, cb, Function() JsonConvert.SerializeObject(New Response(True, api, data:=dsService.FindAllDataSource())))
             Case "addConnection"
-                DoResponse(cb, Function()
-                                   Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
-                                   Dim ds = New DataSource With {
+                DoResponse(api, cb, Function()
+                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim ds = New DataSource With {
                                         .Id = Guid.NewGuid.ToString.Replace("-", ""),
                                         .Type = dsObj.GetValue("databaseType").ToString,
                                         .Name = dsObj.GetValue("connectionName").ToString,
@@ -162,14 +166,14 @@ Public Class HostBrowser
                                         .Current = False,
                                         .Lastchange = Date.Now
                                     }
-                                   dsService.AddDataSource(ds)
+                                        dsService.AddDataSource(ds)
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "editConnection"
-                DoResponse(cb, Function()
-                                   Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
-                                   Dim ds = New DataSource With {
+                DoResponse(api, cb, Function()
+                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim ds = New DataSource With {
                                         .Id = dsObj.GetValue("id").ToString,
                                         .Type = dsObj.GetValue("databaseType").ToString,
                                         .Name = dsObj.GetValue("connectionName").ToString,
@@ -182,51 +186,67 @@ Public Class HostBrowser
                                         .Current = dsObj.GetValue("current").ToString,
                                         .Lastchange = Date.Now
                                     }
-                                   dsService.EditDataSource(ds)
+                                        dsService.EditDataSource(ds)
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "deleteConnection"
-                DoResponse(cb, Function()
-                                   Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
-                                   Dim ds = New DataSource With {
+                DoResponse(api, cb, Function()
+                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim ds = New DataSource With {
                                        .Id = dsObj.GetValue("id").ToString
                                    }
-                                   dsService.DeleteDataSource(ds)
+                                        dsService.DeleteDataSource(ds)
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
+            Case "testConnection"
+                DoResponse(api, cb, Function()
+                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim ds = New DataSource With {
+                                        .Type = dsObj.GetValue("databaseType").ToString,
+                                        .Datasource = dsObj.GetValue("host").ToString,
+                                        .Port = If(IsNull(dsObj.GetValue("port")), Nothing, dsObj.GetValue("port").ToString),
+                                        .Database = If(IsNull(dsObj.GetValue("databaseName")), Nothing, dsObj.GetValue("databaseName").ToString),
+                                        .Username = If(IsNull(dsObj.GetValue("username")), Nothing, dsObj.GetValue("username").ToString),
+                                        .Password = If(IsNull(dsObj.GetValue("password")), Nothing, dsObj.GetValue("password").ToString)
+                                    }
+
+                                        TestConnection(ds)
+
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "switch2Current"
-                DoResponse(cb, Function()
-                                   dsService.SwitchDataSourceTo(args)
+                DoResponse(api, cb, Function()
+                                        dsService.SwitchDataSourceTo(args)
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "closeWindow"
-                DoResponse(cb, Function()
-                                   ParentForm.Hide()
+                DoResponse(api, cb, Function()
+                                        ParentForm.Hide()
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
 
             Case "minimizeWindow"
-                DoResponse(cb, Function()
-                                   ParentForm.WindowState = Windows.Forms.FormWindowState.Minimized
+                DoResponse(api, cb, Function()
+                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Minimized
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "maximizeWindow"
-                DoResponse(cb, Function()
-                                   ParentForm.WindowState = Windows.Forms.FormWindowState.Maximized
+                DoResponse(api, cb, Function()
+                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Maximized
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case "restoreWindow"
-                DoResponse(cb, Function()
-                                   ParentForm.WindowState = Windows.Forms.FormWindowState.Normal
+                DoResponse(api, cb, Function()
+                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Normal
 
-                                   Return JsonConvert.SerializeObject(New Response(True))
-                               End Function)
+                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                    End Function)
             Case Else
                 Diagnostics.Debug.Print("unimplemented")
         End Select
@@ -239,7 +259,7 @@ Public Class HostBrowser
         InnerBrowser.CoreWebView2.ExecuteScriptAsync(String.Format("{0}('{1}')", callback, HttpUtility.JavaScriptStringEncode(args)))
     End Sub
 
-    Private Sub DoResponse(callback As String, fx As Func(Of String))
+    Private Sub DoResponse(api As String, callback As String, fx As Func(Of String))
         Try
             If String.IsNullOrEmpty(callback) Then
                 fx.Invoke()
@@ -247,7 +267,7 @@ Public Class HostBrowser
                 DoResponse(callback, fx.Invoke())
             End If
         Catch ex As Exception
-            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, ex.Message)))
+            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.Message)))
         End Try
     End Sub
 

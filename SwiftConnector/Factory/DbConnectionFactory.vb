@@ -39,7 +39,6 @@ Public Class DbConnectionFactory
     Public Shared Function CreateConnection(ds As DataSource) As IDbConnection
         Dim rst As IDbConnection = Nothing
         Dim connStr As String = Nothing
-        Dim connBuilder As DbConnectionStringBuilder = Nothing
         Select Case ds.Type
             Case DataSourceType.Oracle
                 connStr = "User id=" & ds.Username & ";Password=" & ds.Password & ";Data Source=" &
@@ -51,7 +50,7 @@ Public Class DbConnectionFactory
                 'connStr = "Password=" & ds.Password & ";User ID=" & ds.Username & ";Data Source=" & ds.Datasource
                 rst = New OracleConnection(connStr)
             Case DataSourceType.MySQL
-                connBuilder = New MySqlConnectionStringBuilder() With {
+                Dim connBuilder = New MySqlConnectionStringBuilder() With {
                     .Server = ds.Datasource,
                     .Port = If(String.IsNullOrEmpty(ds.Port), 3306, Integer.Parse(ds.Port)),
                     .Database = ds.Database,
@@ -69,8 +68,18 @@ Public Class DbConnectionFactory
             Case DataSourceType.SqlServer
                 Throw New NotImplementedException("SqlServer is not currently supported!")
             Case DataSourceType.SQLite
-                connStr = "Data Source=" & ds.Datasource & ";Version=3;Pooling=True;" & If(String.IsNullOrEmpty(ds.Password), "", "Password=" & ds.Password)
-                rst = New SQLiteConnection(connStr)
+                Dim connBuilder = New SQLiteConnectionStringBuilder() With {
+                    .DataSource = ds.Datasource,
+                    .Pooling = True,
+                    .Version = 3,
+                    .FailIfMissing = True
+                }
+                If Not String.IsNullOrEmpty(ds.Password) Then
+                    connBuilder.Password = ds.Password
+                End If
+                rst = New SQLiteConnection(connBuilder.ConnectionString)
+                'connStr = "Data Source=" & ds.Datasource & ";Version=3;Pooling=True;Mode=ReadWrite;" & If(String.IsNullOrEmpty(ds.Password), "", "Password=" & ds.Password)
+                'rst = New SQLiteConnection(connStr)
             Case Else
                 Throw New NotImplementedException(ds.Name & " is not currently supported!")
         End Select
