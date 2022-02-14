@@ -146,6 +146,8 @@ Public Class HostBrowser
         Dim args = If(jsonString.ContainsKey("args"), jsonString("args"), Nothing)
         Dim cb = If(jsonString.ContainsKey("callback"), jsonString("callback"), Nothing)
         Select Case api
+            Case "platformVerify"
+                DoResponse(api, cb, Function() JsonConvert.SerializeObject(New Response(True, api)))
             Case "loadChangeLog"
                 DoResponse(api, cb, Function() JsonConvert.SerializeObject(New Response(True, api, data:=File.ReadAllText(Path.Combine(GetBasePath, "CHANGELOG.MD")))))
             Case "loadConnections"
