@@ -36,7 +36,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.20</ApplicationVersion>
+    <ApplicationVersion>1.0.1.21</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -327,7 +327,7 @@
     <Content Include="Local\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\js\app.ec4a2a5a.js">
+    <Content Include="Local\js\app.b2c9978b.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Local\js\chunk-1c021b75.e43cbea7.js">
@@ -336,7 +336,7 @@
     <Content Include="Local\js\chunk-2d21a3d2.76171a3f.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\js\chunk-2d22d746.e3c876cf.js">
+    <Content Include="Local\js\chunk-2d22d746.5b0f9afe.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Local\js\chunk-8f962e28.21e7b7e4.js">
@@ -366,22 +366,22 @@
     <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\js\app.ec4a2a5a.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Local\js\chunk-1c021b75.e43cbea7.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Local\js\chunk-2d21a3d2.76171a3f.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\js\chunk-2d22d746.e3c876cf.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Local\js\chunk-8f962e28.21e7b7e4.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Local\js\chunk-vendors.1a17a102.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\app.b2c9978b.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Local\js\chunk-2d22d746.5b0f9afe.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="publish\.gitattributes" />
