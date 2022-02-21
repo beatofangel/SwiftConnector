@@ -28,8 +28,11 @@ Imports System.Drawing
 Imports System.Drawing.Text
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports Microsoft.Toolkit.Uwp.Notifications
 Imports MySqlConnector
 Imports Oracle.ManagedDataAccess.Client
+Imports SwiftConnector.My.Resources
+Imports Windows.UI.Notifications
 
 Module CommonHelper
 
@@ -640,7 +643,7 @@ Module CommonHelper
         While True
             rst = New Font(ff, fontSize)
             Dim h = g.MeasureString(rst.Name, rst).Height
-                If Math.Abs(h - height) < 0.1 Then Exit While
+            If Math.Abs(h - height) < 0.1 Then Exit While
             If h > height Then
                 fontSize -= 0.05
             Else
@@ -650,5 +653,85 @@ Module CommonHelper
 
         Return rst
     End Function
+
+    Private _basePath As String
+    Public ReadOnly Property GetBasePath() As String
+        Get
+            If String.IsNullOrEmpty(_basePath) Then
+                Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
+                'Dim location As String = assemblyInfo.Location
+                Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
+                _basePath = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
+            End If
+            Return _basePath
+        End Get
+    End Property
+
+    Public Sub Toast(ParamArray args As String())
+
+        With Environment.OSVersion.Version
+            ' Windows 10 (introduced in 10.0.10240.0)
+            If .Major >= 10 And .Minor >= 0 And .Build >= 10240 Then
+                With New ToastContentBuilder
+                    If args.Length > 0 Then
+                        .AddText(args(0))
+                    End If
+                    If args.Length > 1 Then
+                        .AddText(args(1))
+                    End If
+                    '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
+                    If args.Length > 2 Then
+                        .AddAppLogoOverride(New Uri(Path.Combine(GetBasePath, args(2))))
+                    End If
+                    .Show()
+                End With
+
+                'AddHandler ToastNotificationManagerCompat.OnActivated, Sub(a)
+                '                                                           Debug.Print(a.Argument)
+                '                                                       End Sub
+
+                'Dim toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText02)
+
+                'Dim textParts = toastXml.GetElementsByTagName("text")
+                'textParts(0).AppendChild(toastXml.CreateTextNode("title"))
+                'textParts(1).AppendChild(toastXml.CreateTextNode("content"))
+
+                'Dim imageParts = toastXml.GetElementsByTagName("image")
+
+                ''imageParts(0).Attributes.GetNamedItem("src").NodeValue = "data:image/png;base64," & Convert.ToBase64String(IconResource.zh.ToByteArray(Imaging.ImageFormat.Bmp))
+                'imageParts(0).Attributes.GetNamedItem("src").NodeValue = "D:\Workspace\VisualStudio\SwiftConnector\SwiftConnector\Resources\Icon\lang\zh.png"
+
+                'Dim audioParts = toastXml.CreateElement("audio")
+                'audioParts.SetAttribute("src", "ms-winsoundevent:Notification.Reminder")
+                'toastXml.DocumentElement.AppendChild(audioParts)
+
+                'Dim commandParts = toastXml.CreateElement("commands")
+                'toastXml.DocumentElement.AppendChild(commandParts)
+                'Dim command = toastXml.CreateElement("command")
+                'command.SetAttribute("id", "dismiss")
+                'command.SetAttribute("arguments", "testdismiss")
+                'commandParts.AppendChild(command)
+
+                'Dim toast = New ToastNotification(toastXml)
+
+                'AddHandler toast.Activated, Sub(a, obj)
+                '                                Debug.Print("Activated")
+                '                            End Sub
+
+                'ToastNotificationManager.CreateToastNotifier("Swift Connector").Show(toast)
+            Else
+                MsgBox(args(1), Title:=args(0))
+            End If
+        End With
+
+    End Sub
+
+    Public DataSourceDic As Dictionary(Of DataSourceType, String) = New Dictionary(Of DataSourceType, String) From {
+            {DataSourceType.Oracle, "oracle"},
+            {DataSourceType.MySQL, "mysql"},
+            {DataSourceType.SqlServer, "sqlserver"},
+            {DataSourceType.PostgreSQL, "postgresql"},
+            {DataSourceType.SQLite, "sqlite"}
+        }
 
 End Module

@@ -21,6 +21,9 @@
 
 Imports System.Data
 Imports System.Data.Common
+Imports System.Drawing
+Imports System.Drawing.Imaging
+Imports System.IO
 Imports System.Reflection
 Imports System.Runtime.CompilerServices
 
@@ -109,5 +112,13 @@ Module Extensions
         newBytes(7) = oldBytes(6)
 
         Return New Guid(newBytes)
+    End Function
+
+    <Extension()>
+    Function ToByteArray(image As Image, format As ImageFormat) As Byte()
+        Using ms As MemoryStream = New MemoryStream()
+            image.Save(ms, format)
+            Return ms.ToArray()
+        End Using
     End Function
 End Module

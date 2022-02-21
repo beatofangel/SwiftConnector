@@ -27,6 +27,7 @@ Imports System.Text.RegularExpressions
 Imports System.Web
 Imports System.Windows.Forms
 Imports log4net
+Imports Microsoft.Toolkit.Uwp.Notifications
 Imports SwiftConnector.My.Resources
 
 <Runtime.InteropServices.ComVisible(True)>
@@ -675,6 +676,7 @@ Public Class Ribbon
         Dim switchRst = DatasourceService.SwitchDataSourceTo(GetDataSourceId(control.Id))
         If switchRst Then
             _curDataSource = control.Id
+            Toast(TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS), TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name), "Resources\Icon\" & DataSourceDic(CurDataSource.Type) & "_large_64.png")
         End If
         _curDataSource = Nothing
         ribbon.InvalidateControl("DMenuDatabase")

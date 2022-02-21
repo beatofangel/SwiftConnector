@@ -32,7 +32,7 @@ Public Class XlHotKeys
     Private Const WH_KEYBOARD As Integer = 2
     Private Const HC_ACTION As Integer = 0
     Private Shared cb As Action(Of String)
-    Private Shared ReadOnly kc As New Windows.Forms.KeysConverter
+    Private Shared ReadOnly kc As New System.Windows.Forms.KeysConverter
 
     Private hotKeys As New Dictionary(Of String, XlHotKey)
 
@@ -127,7 +127,7 @@ Public Class XlHotKeys
         cb = Nothing
     End Sub
 
-    Private Function DetectHotKey(k As Windows.Forms.Keys) As Boolean
+    Private Function DetectHotKey(k As System.Windows.Forms.Keys) As Boolean
         For Each hk As XlHotKey In hotKeys.Values
             If hk.ContainsKey(kc.ConvertToString(k)) Then
                 Return True
@@ -155,17 +155,17 @@ Public Class XlHotKeys
                 Return CInt(NativeMethods.CallNextHookEx(_hookID, nCode, wParam, lParam))
             Else
                 If nCode = HC_ACTION Then
-                    Dim keyData As Windows.Forms.Keys = CType(wParam, Windows.Forms.Keys)
+                    Dim keyData As System.Windows.Forms.Keys = CType(wParam, System.Windows.Forms.Keys)
                     KeyWasAlreadyPressed = (CLng(lParam) And bitmask) > 0
                     'If (IsKeyDown(Windows.Forms.Keys.ControlKey) Or IsKeyDown(Windows.Forms.Keys.ShiftKey)) And DetectHotKey(keyData) And Not KeyWasAlreadyPressed Then
-                    If IsKeyDown(Windows.Forms.Keys.ControlKey) And DetectHotKey(keyData) And Not KeyWasAlreadyPressed Then
+                    If IsKeyDown(System.Windows.Forms.Keys.ControlKey) And DetectHotKey(keyData) And Not KeyWasAlreadyPressed Then
                         Dim xlHwnd = Globals.ThisAddIn.Application.Hwnd
                         Dim topHwnd = NativeMethods.GetForegroundWindow().ToInt32
                         ' 仅当excel窗口为当前窗口时 
                         If xlHwnd = topHwnd And Not IsEditing() Then
                             Dim keyList As New List(Of String)
-                            If IsKeyDown(Windows.Forms.Keys.ControlKey) Then keyList.Add(KEY_CTRL)
-                            If IsKeyDown(Windows.Forms.Keys.ShiftKey) Then keyList.Add(KEY_SHIFT)
+                            If IsKeyDown(System.Windows.Forms.Keys.ControlKey) Then keyList.Add(KEY_CTRL)
+                            If IsKeyDown(System.Windows.Forms.Keys.ShiftKey) Then keyList.Add(KEY_SHIFT)
                             keyList.Add(kc.ConvertToString(keyData))
                             cb.Invoke(String.Join("", keyList))
                         Else
@@ -184,7 +184,7 @@ Public Class XlHotKeys
         End Try
     End Function
 
-    Private Shared Function IsKeyDown(ByVal keys As Windows.Forms.Keys) As Boolean
+    Private Shared Function IsKeyDown(ByVal keys As System.Windows.Forms.Keys) As Boolean
         Return (NativeMethods.GetKeyState(CInt(keys)) And &H8000) = &H8000
     End Function
 

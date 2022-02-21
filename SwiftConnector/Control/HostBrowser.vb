@@ -24,6 +24,7 @@ Imports System.Configuration
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports System.Web
+Imports System.Windows.Forms
 Imports log4net
 Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft
@@ -38,6 +39,8 @@ Public Class HostBrowser
     Protected Shared logger As ILog = LogManager.GetLogger(Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
     Private dsService As New DatasourceService
+
+    Private textService As New TextService
 
     Private Const DEFAULT_WEBVIEW2_USERDATAFOLDER As String = "SwiftConnector\temp\"
     'Private Const HOST As String = "dbtoolsaddin.local"
@@ -70,13 +73,6 @@ Public Class HostBrowser
         End Set
     End Property
 
-    Public Sub HostBrowser_VisibleChanged(sender As Object, e As EventArgs)
-        'Diagnostics.Debug.Print(sender.Visible)
-        'If sender.Visible Then
-        '    Await Init()
-        'End If
-    End Sub
-
     Private Async Function Init(Optional fragment As String = "") As Threading.Tasks.Task
         If String.IsNullOrEmpty(HB_HOST) Then
             HB_HOST = ConfigurationManager.AppSettings.Get("Host")
@@ -104,10 +100,10 @@ Public Class HostBrowser
 
             env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
             Await InnerBrowser.EnsureCoreWebView2Async(env)
-            Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
-            'Dim location As String = assemblyInfo.Location
-            Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
-            Dim basePath As String = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
+            'Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
+            ''Dim location As String = assemblyInfo.Location
+            'Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
+            'Dim basePath As String = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
             ' 通过配置项判断是否为开发模式，开发模式：访问localhost:port，发布模式：访问虚拟主机映射
             If virtualHost Then
                 InnerBrowser.CoreWebView2.SetVirtualHostNameToFolderMapping(HB_HOST, Path.Combine(GetBasePath, "Local"), CoreWebView2HostResourceAccessKind.Allow)
@@ -206,13 +202,13 @@ Public Class HostBrowser
                 DoResponse(api, cb, Function()
                                         Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         Dim ds = New DataSource With {
-                                        .Type = dsObj.GetValue("databaseType").ToString,
-                                        .Datasource = dsObj.GetValue("host").ToString,
-                                        .Port = If(IsNull(dsObj.GetValue("port")), Nothing, dsObj.GetValue("port").ToString),
-                                        .Database = If(IsNull(dsObj.GetValue("databaseName")), Nothing, dsObj.GetValue("databaseName").ToString),
-                                        .Username = If(IsNull(dsObj.GetValue("username")), Nothing, dsObj.GetValue("username").ToString),
-                                        .Password = If(IsNull(dsObj.GetValue("password")), Nothing, dsObj.GetValue("password").ToString)
-                                    }
+                                            .Type = dsObj.GetValue("databaseType").ToString,
+                                            .Datasource = dsObj.GetValue("host").ToString,
+                                            .Port = If(IsNull(dsObj.GetValue("port")), Nothing, dsObj.GetValue("port").ToString),
+                                            .Database = If(IsNull(dsObj.GetValue("databaseName")), Nothing, dsObj.GetValue("databaseName").ToString),
+                                            .Username = If(IsNull(dsObj.GetValue("username")), Nothing, dsObj.GetValue("username").ToString),
+                                            .Password = If(IsNull(dsObj.GetValue("password")), Nothing, dsObj.GetValue("password").ToString)
+                                        }
 
                                         TestConnection(ds)
 
@@ -220,9 +216,13 @@ Public Class HostBrowser
                                     End Function)
             Case "switch2Current"
                 DoResponse(api, cb, Function()
-                                        dsService.SwitchDataSourceTo(args)
-
-                                        Return JsonConvert.SerializeObject(New Response(True, api))
+                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        If dsService.SwitchDataSourceTo(dsObj.GetValue("Id").ToString) Then
+                                            Toast(textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS), textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString), "Resources\Icon\" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png")
+                                            Return JsonConvert.SerializeObject(New Response(True, api))
+                                        Else
+                                            Return JsonConvert.SerializeObject(New Response(False, api, message:="Switch failed"))
+                                        End If
                                     End Function)
             Case "closeWindow"
                 DoResponse(api, cb, Function()
@@ -233,19 +233,19 @@ Public Class HostBrowser
 
             Case "minimizeWindow"
                 DoResponse(api, cb, Function()
-                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Minimized
+                                        ParentForm.WindowState = FormWindowState.Minimized
 
                                         Return JsonConvert.SerializeObject(New Response(True, api))
                                     End Function)
             Case "maximizeWindow"
                 DoResponse(api, cb, Function()
-                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Maximized
+                                        ParentForm.WindowState = FormWindowState.Maximized
 
                                         Return JsonConvert.SerializeObject(New Response(True, api))
                                     End Function)
             Case "restoreWindow"
                 DoResponse(api, cb, Function()
-                                        ParentForm.WindowState = Windows.Forms.FormWindowState.Normal
+                                        ParentForm.WindowState = FormWindowState.Normal
 
                                         Return JsonConvert.SerializeObject(New Response(True, api))
                                     End Function)
@@ -273,18 +273,18 @@ Public Class HostBrowser
         End Try
     End Sub
 
-    Private _basePath As String
-    Private ReadOnly Property GetBasePath() As String
-        Get
-            If String.IsNullOrEmpty(_basePath) Then
-                Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
-                'Dim location As String = assemblyInfo.Location
-                Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
-                _basePath = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
-            End If
-            Return _basePath
-        End Get
-    End Property
+    'Private _basePath As String
+    'Private ReadOnly Property GetBasePath() As String
+    '    Get
+    '        If String.IsNullOrEmpty(_basePath) Then
+    '            Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
+    '            'Dim location As String = assemblyInfo.Location
+    '            Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
+    '            _basePath = Path.GetDirectoryName(uriCodeBase.LocalPath.ToString())
+    '        End If
+    '        Return _basePath
+    '    End Get
+    'End Property
 
     Public Async Function SwitchLanguage() As Threading.Tasks.Task
         Dim targetFragment As String = InnerBrowser.Source.Fragment
@@ -298,4 +298,12 @@ Public Class HostBrowser
         Await InnerBrowser.CoreWebView2.ExecuteScriptAsync(String.Format("navigateTo('/{0}')", HttpUtility.JavaScriptStringEncode(path)))
     End Function
 
+    Public Sub HostBrowser_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Visible And InnerBrowser.CoreWebView2 IsNot Nothing Then
+            Dim api = "refreshConnections"
+            DoResponse(api, "refreshConnections", Function()
+                                                      Return JsonConvert.SerializeObject(New Response(True, api, data:=Globals.ThisAddIn.CurDataSource.Id))
+                                                  End Function)
+        End If
+    End Sub
 End Class

@@ -127,26 +127,6 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
-        Friend Shared ReadOnly Property mysql_32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("mysql_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property mysql_64() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("mysql_64", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
         Friend Shared ReadOnly Property mysql_large_64() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("mysql_large_64", resourceCulture)
@@ -167,26 +147,6 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
-        Friend Shared ReadOnly Property oracle_32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("oracle_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property oracle_64() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("oracle_64", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
         Friend Shared ReadOnly Property oracle_large_64() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("oracle_large_64", resourceCulture)
@@ -200,26 +160,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property oracle_mini_32() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("oracle_mini_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property postgresql_32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("postgresql_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property postgresql_64() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("postgresql_64", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -267,26 +207,6 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
-        Friend Shared ReadOnly Property sqlite_32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("sqlite_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property sqlite_64() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("sqlite_64", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
         Friend Shared ReadOnly Property sqlite_large_64() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("sqlite_large_64", resourceCulture)
@@ -300,26 +220,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property sqlite_mini_32() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("sqlite_mini_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property sqlserver_32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("sqlserver_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend Shared ReadOnly Property sqlserver_64() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("sqlserver_64", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -14,6 +14,7 @@ Imports System.Deployment.Application
 Imports System.Globalization
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports log4net
 
 <Assembly: log4net.Config.XmlConfigurator(ConfigFile:="Log4net.config", Watch:=True)>
@@ -145,12 +146,12 @@ Public Class ThisAddIn
         logger.Debug("ThisAddIn_Startup")
 
         'langCode = Application.LanguageSettings.LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI)
-        Windows.Forms.Application.SetUnhandledExceptionMode(Windows.Forms.UnhandledExceptionMode.CatchException)
+        System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException)
         _hotKeys = New XlHotKeys()
         _hotKeys.Add("Select", New XlHotKey("BtnSelect_Click", KEY_CTRL, "Q"))
         _hotKeys.Add("Insert", New XlHotKey("BtnInsert_Click", KEY_CTRL, "W"))
         _hotKeys.Add("Delete", New XlHotKey("BtnDelete_Click", KEY_CTRL, "D"))
-        _hotKeys.Add("SettingStyle", New XlHotKey("TglBtnStyleSettings_Click", KEY_CTRL, KEY_SHIFT, "Enter"))
+        '_hotKeys.Add("SettingStyle", New XlHotKey("TglBtnStyleSettings_Click", KEY_CTRL, KEY_SHIFT, "Enter")) ' 与excel数组公式快捷键冲突
         _hotKeys.Bind(Sub(hotkey As String)
                           Try
                               For Each key In _hotKeys.Keys

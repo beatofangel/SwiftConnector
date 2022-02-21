@@ -22,6 +22,8 @@
 Imports System.Data
 Imports Dapper
 Imports log4net
+Imports Microsoft.Toolkit.Uwp.Notifications
+Imports Windows.UI.Notifications
 
 ''' <summary>
 ''' 表对象(Excel)
@@ -183,7 +185,15 @@ Public Class XlTable
         Else
             DapperService.Execute(Sub(rst)
                                       If Not silent Then
-                                          MsgBox(String.Format("Table {0}({1}) has been cleared.", TableId, TableName))
+                                          'MsgBox(String.Format("Table {0}({1}) has been cleared.", TableId, TableName))
+                                          Toast(String.Format("Table {0}({1}) has been cleared.", TableId, TableName), TextService.GetTextByProperty(TextType.TT_RB_TRUNCATE).Replace("\r\n", String.Empty))
+                                          'With New ToastContentBuilder
+                                          '    .AddArgument("action", "viewConversation") _
+                                          '    .AddArgument("conversationId", 9813) _
+                                          '     .AddText(String.Format("<{0}>", TextService.GetTextByProperty(TextType.TT_RB_TRUNCATE).Replace("\r\n", String.Empty))) _
+                                          '    .AddText(String.Format("Table {0}({1}) has been cleared.", TableId, TableName)) _
+                                          '    .Show()
+                                          'End With
                                       End If
                                   End Sub, sqlCmd.SqlTruncateTable(TableId))
         End If

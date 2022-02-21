@@ -586,6 +586,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Icon\mysql.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Icon\oracle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Icon\postgresql.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Icon\sqlite.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Icon\sqlserver.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="userdata.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -610,29 +625,41 @@
     <Content Include="Resources\Icon\lang\squared\ru.png" />
     <Content Include="Resources\Icon\lang\squared\zh.png" />
     <Content Include="Resources\Icon\lang\zh.png" />
-    <Content Include="Resources\Icon\mysql_32.png" />
-    <Content Include="Resources\Icon\mysql_64.png" />
-    <Content Include="Resources\Icon\mysql_large_64.png" />
-    <Content Include="Resources\Icon\mysql_mini_32.png" />
-    <Content Include="Resources\Icon\oracle_32.png" />
-    <Content Include="Resources\Icon\oracle_64.png" />
-    <Content Include="Resources\Icon\oracle_large_64.png" />
-    <Content Include="Resources\Icon\oracle_mini_32.png" />
-    <Content Include="Resources\Icon\postgresql_32.png" />
-    <Content Include="Resources\Icon\postgresql_64.png" />
-    <Content Include="Resources\Icon\postgresql_large_64.png" />
-    <Content Include="Resources\Icon\postgresql_mini_32.png" />
-    <Content Include="Resources\Icon\sqlite_32.png" />
-    <Content Include="Resources\Icon\sqlite_64.png" />
-    <Content Include="Resources\Icon\sqlite_large_64.png" />
-    <Content Include="Resources\Icon\sqlite_mini_32.png" />
-    <Content Include="Resources\Icon\sqlserver_32.png" />
-    <Content Include="Resources\Icon\sqlserver_64.png" />
-    <Content Include="Resources\Icon\sqlserver_large_64.png" />
-    <Content Include="Resources\Icon\sqlserver_mini_32.png" />
+    <Content Include="Resources\Icon\mysql_large_64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\mysql_mini_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\oracle_large_64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\oracle_mini_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\postgresql_large_64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\postgresql_mini_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\sqlite_large_64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\sqlite_mini_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\sqlserver_large_64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icon\sqlserver_mini_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Ribbon.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper">
       <Version>2.0.78</Version>
@@ -642,6 +669,9 @@
     </PackageReference>
     <PackageReference Include="log4net">
       <Version>2.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.1072.54</Version>

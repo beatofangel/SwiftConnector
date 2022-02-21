@@ -136,35 +136,17 @@
   <data name="ko" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\lang\squared\ko.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mysql_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\mysql_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mysql_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\mysql_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="mysql_large_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\mysql_large_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mysql_mini_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\mysql_mini_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="oracle_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\oracle_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="oracle_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\oracle_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="oracle_large_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\oracle_large_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="oracle_mini_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\oracle_mini_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="postgresql_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\postgresql_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="postgresql_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\postgresql_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="postgresql_large_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\postgresql_large_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,23 +160,11 @@
   <data name="ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\lang\squared\ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sqlite_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\sqlite_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sqlite_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\sqlite_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sqlite_large_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\sqlite_large_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sqlite_mini_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\sqlite_mini_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sqlserver_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\sqlserver_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sqlserver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Icon\sqlserver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sqlserver_large_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icon\sqlserver_large_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
