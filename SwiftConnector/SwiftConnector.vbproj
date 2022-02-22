@@ -36,7 +36,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.24</ApplicationVersion>
+    <ApplicationVersion>1.0.1.25</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -291,97 +291,7 @@
     <Content Include="CHANGELOG.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Local\css\chunk-1c021b75.68ea5abd.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\css\chunk-8f962e28.80fb78d2.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\css\chunk-vendors.754fd99c.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\fontawesome-webfont.912ec66d.912ec66d.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\mysql.e195f8c4.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\oracle.eeed200a.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\postgresql.f9b322c2.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\sqlite.bfcf73d5.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\sqlserver.2eb732d1.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\img\stamp-texture.72e4f534.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\app.b2c9978b.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-1c021b75.e43cbea7.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-2d21a3d2.76171a3f.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-2d22d746.5b0f9afe.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-8f962e28.21e7b7e4.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-vendors.1a17a102.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\element-icons.535877f5.535877f5.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\element-icons.732389de.732389de.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\fontawesome-webfont.674f50d2.674f50d2.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\fontawesome-webfont.af7ae505.af7ae505.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\fontawesome-webfont.b06871f2.b06871f2.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\fonts\fontawesome-webfont.fee66e71.fee66e71.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-1c021b75.e43cbea7.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-2d21a3d2.76171a3f.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-8f962e28.21e7b7e4.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-vendors.1a17a102.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\app.b2c9978b.js.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Local\js\chunk-2d22d746.5b0f9afe.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="publish\.gitattributes" />
@@ -673,6 +583,9 @@
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.113.7</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Local\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
