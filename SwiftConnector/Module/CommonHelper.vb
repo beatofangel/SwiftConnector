@@ -684,7 +684,8 @@ Module CommonHelper
                     End If
                     '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
                     If args.Length > 2 Then
-                        Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
+                        Dim logoUri = New Uri(args(2))
+                        'Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
                         logger.Debug(logoUri.ToString)
                         .AddAppLogoOverride(logoUri)
                     End If
