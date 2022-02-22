@@ -28,6 +28,7 @@ Imports System.Drawing
 Imports System.Drawing.Text
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports log4net
 Imports Microsoft.Toolkit.Uwp.Notifications
 Imports MySqlConnector
 Imports Oracle.ManagedDataAccess.Client
@@ -35,6 +36,8 @@ Imports SwiftConnector.My.Resources
 Imports Windows.UI.Notifications
 
 Module CommonHelper
+
+    Private logger As ILog = LogManager.GetLogger(Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
     Private Const DEFAULT_INTERNAL_DATASOURCE As String = "SwiftConnector/userdata.db"
 
@@ -681,7 +684,9 @@ Module CommonHelper
                     End If
                     '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
                     If args.Length > 2 Then
-                        .AddAppLogoOverride(New Uri(Path.Combine(GetBasePath, args(2))))
+                        Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
+                        logger.Debug(logoUri.ToString)
+                        .AddAppLogoOverride(logoUri)
                     End If
                     .Show()
                 End With
