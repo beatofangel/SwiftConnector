@@ -218,7 +218,13 @@ Public Class HostBrowser
                 DoResponse(api, cb, Function()
                                         Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         If dsService.SwitchDataSourceTo(dsObj.GetValue("Id").ToString) Then
-                                            Toast(textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS), textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString), "Resources\Icon\" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png")
+                                            Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
+                                            logger.Debug(title)
+                                            Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString)
+                                            logger.Debug(content)
+                                            Dim logo = "Resources\Icon\" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
+                                            logger.Debug(logo)
+                                            Toast(title, content, logo)
                                             Return JsonConvert.SerializeObject(New Response(True, api))
                                         Else
                                             Return JsonConvert.SerializeObject(New Response(False, api, message:="Switch failed"))
