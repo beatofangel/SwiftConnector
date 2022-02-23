@@ -675,22 +675,22 @@ Module CommonHelper
         With Environment.OSVersion.Version
             ' Windows 10 (introduced in 10.0.10240.0)
             If .Major >= 10 And .Minor >= 0 And .Build >= 10240 Then
-                With New ToastContentBuilder
-                    If args.Length > 0 Then
-                        .AddText(args(0))
-                    End If
-                    If args.Length > 1 Then
-                        .AddText(args(1))
-                    End If
-                    '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
-                    If args.Length > 2 Then
-                        Dim logoUri = New Uri(args(2))
-                        'Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
-                        logger.Debug(logoUri.ToString)
-                        .AddAppLogoOverride(logoUri)
-                    End If
-                    .Show()
-                End With
+                Dim builder = New ToastContentBuilder
+
+                If args.Length > 0 Then
+                    builder.AddText(args(0))
+                End If
+                If args.Length > 1 Then
+                    builder.AddText(args(1))
+                End If
+                '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
+                If args.Length > 2 Then
+                    Dim logoUri = New Uri(args(2))
+                    'Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
+                    logger.Debug(logoUri.ToString)
+                    builder.AddAppLogoOverride(logoUri)
+                End If
+                builder.Show()
 
                 'AddHandler ToastNotificationManagerCompat.OnActivated, Sub(a)
                 '                                                           Debug.Print(a.Argument)

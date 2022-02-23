@@ -274,7 +274,7 @@ Public Class HostBrowser
                 DoResponse(callback, fx.Invoke())
             End If
         Catch ex As Exception
-            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.Message & vbCrLf & ex.StackTrace)))
+            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.ToString)))
         End Try
     End Sub
 
