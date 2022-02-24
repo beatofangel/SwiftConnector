@@ -267,15 +267,15 @@ Public Class HostBrowser
     End Sub
 
     Private Sub DoResponse(api As String, callback As String, fx As Func(Of String))
-        Try
-            If String.IsNullOrEmpty(callback) Then
+        'Try
+        If String.IsNullOrEmpty(callback) Then
                 fx.Invoke()
             Else
                 DoResponse(callback, fx.Invoke())
             End If
-        Catch ex As Exception
-            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.ToString)))
-        End Try
+        'Catch ex As Exception
+        '    DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.ToString)))
+        'End Try
     End Sub
 
     'Private _basePath As String
