@@ -222,8 +222,9 @@ Public Class HostBrowser
                                             logger.Debug(title)
                                             Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString)
                                             logger.Debug(content)
-                                            Dim logo = "https://raw.githubusercontent.com/beatofangel/swift-connector-ui-release/master/images/database/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
-                                            Toast(title, content, logo)
+                                            'Dim logo = "/Resources/Icon/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
+                                            'Toast(title, content, logo)
+                                            Toast(title, content)
                                             Return JsonConvert.SerializeObject(New Response(True, api))
                                         Else
                                             Return JsonConvert.SerializeObject(New Response(False, api, message:="Switch failed"))

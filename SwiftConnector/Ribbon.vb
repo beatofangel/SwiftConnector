@@ -681,8 +681,9 @@ Public Class Ribbon
             logger.Debug(title)
             Dim content = TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name)
             logger.Debug(content)
-            Dim logo = "https://raw.githubusercontent.com/beatofangel/swift-connector-ui-release/master/images/database/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
-            Toast(title, content, logo)
+            'Dim logo = "https://raw.githubusercontent.com/beatofangel/swift-connector-ui-release/master/images/database/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
+            'Toast(title, content, logo)
+            Toast(title, content)
         End If
         _curDataSource = Nothing
         ribbon.InvalidateControl("DMenuDatabase")
