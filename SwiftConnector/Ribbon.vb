@@ -676,7 +676,13 @@ Public Class Ribbon
         Dim switchRst = DatasourceService.SwitchDataSourceTo(GetDataSourceId(control.Id))
         If switchRst Then
             _curDataSource = control.Id
-            Toast(TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS), TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name), "Resources\Icon\" & DataSourceDic(CurDataSource.Type) & "_large_64.png")
+
+            Dim title = TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
+            logger.Debug(title)
+            Dim content = TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name)
+            logger.Debug(content)
+            Dim logo = "https://raw.githubusercontent.com/beatofangel/swift-connector-ui-release/master/images/database/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
+            Toast(title, content, logo)
         End If
         _curDataSource = Nothing
         ribbon.InvalidateControl("DMenuDatabase")
