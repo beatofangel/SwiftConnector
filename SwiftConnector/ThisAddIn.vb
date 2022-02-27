@@ -144,7 +144,8 @@ Public Class ThisAddIn
     Private Sub ThisAddIn_Startup() Handles Me.Startup
 
         logger.Debug("ThisAddIn_Startup")
-
+        'Dim installer As New SwiftConnectorInstaller
+        'installer.InstallApplication("http://localhost/swift-connector/SwiftConnector.vsto")
         'langCode = Application.LanguageSettings.LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI)
         System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException)
         _hotKeys = New XlHotKeys()
@@ -177,6 +178,14 @@ Public Class ThisAddIn
 
         If ApplicationDeployment.IsNetworkDeployed Then
             Dim ver = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
+            logger.Debug(String.Format("local version check {0}", ver))
+            'If Not ApplicationDeployment.CurrentDeployment.IsFirstRun Then
+            '    If ApplicationDeployment.CurrentDeployment.Update() Then
+            '        logger.Debug("update success")
+            '    Else
+            '        logger.Debug("update failed")
+            '    End If
+            'End If
 
             If configService.GetVersion() <> ver Then
                 Dim sql = "ATTACH DATABASE '" & Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "userdata.db") & "' as 'newConfig';" &

@@ -678,9 +678,7 @@ Public Class Ribbon
             _curDataSource = control.Id
 
             Dim title = TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
-            logger.Debug(title)
             Dim content = TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name)
-            logger.Debug(content)
             'Dim logo = "https://raw.githubusercontent.com/beatofangel/swift-connector-ui-release/master/images/database/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
             'Toast(title, content, logo)
             Toast(title, content)

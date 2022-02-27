@@ -690,7 +690,11 @@ Module CommonHelper
                     logger.Debug(logoUri.ToString)
                     builder.AddAppLogoOverride(logoUri)
                 End If
-                builder.Show()
+                Try
+                    builder.Show()
+                Catch ex As Exception
+                    logger.Error(ex)
+                End Try
 
                 'AddHandler ToastNotificationManagerCompat.OnActivated, Sub(a)
                 '                                                           Debug.Print(a.Argument)
@@ -699,30 +703,35 @@ Module CommonHelper
                 'Dim toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText02)
 
                 'Dim textParts = toastXml.GetElementsByTagName("text")
-                'textParts(0).AppendChild(toastXml.CreateTextNode("title"))
-                'textParts(1).AppendChild(toastXml.CreateTextNode("content"))
-
-                'Dim imageParts = toastXml.GetElementsByTagName("image")
+                'If args.Length > 0 Then
+                '    textParts(0).AppendChild(toastXml.CreateTextNode(args(0)))
+                'End If
+                'If args.Length > 1 Then
+                '    textParts(1).AppendChild(toastXml.CreateTextNode(args(1)))
+                'End If
+                'If args.Length > 2 Then
+                '    Dim imageParts = toastXml.GetElementsByTagName("image")
+                '    imageParts(0).Attributes.GetNamedItem("src").NodeValue = New Uri(args(2), UriKind.Relative)
+                'End If
 
                 ''imageParts(0).Attributes.GetNamedItem("src").NodeValue = "data:image/png;base64," & Convert.ToBase64String(IconResource.zh.ToByteArray(Imaging.ImageFormat.Bmp))
-                'imageParts(0).Attributes.GetNamedItem("src").NodeValue = "D:\Workspace\VisualStudio\SwiftConnector\SwiftConnector\Resources\Icon\lang\zh.png"
 
-                'Dim audioParts = toastXml.CreateElement("audio")
-                'audioParts.SetAttribute("src", "ms-winsoundevent:Notification.Reminder")
-                'toastXml.DocumentElement.AppendChild(audioParts)
+                ''Dim audioParts = toastXml.CreateElement("audio")
+                ''audioParts.SetAttribute("src", "ms-winsoundevent:Notification.Reminder")
+                ''toastXml.DocumentElement.AppendChild(audioParts)
 
-                'Dim commandParts = toastXml.CreateElement("commands")
-                'toastXml.DocumentElement.AppendChild(commandParts)
-                'Dim command = toastXml.CreateElement("command")
-                'command.SetAttribute("id", "dismiss")
-                'command.SetAttribute("arguments", "testdismiss")
-                'commandParts.AppendChild(command)
+                ''Dim commandParts = toastXml.CreateElement("commands")
+                ''toastXml.DocumentElement.AppendChild(commandParts)
+                ''Dim command = toastXml.CreateElement("command")
+                ''command.SetAttribute("id", "dismiss")
+                ''command.SetAttribute("arguments", "testdismiss")
+                ''commandParts.AppendChild(command)
 
                 'Dim toast = New ToastNotification(toastXml)
 
-                'AddHandler toast.Activated, Sub(a, obj)
-                '                                Debug.Print("Activated")
-                '                            End Sub
+                ''AddHandler toast.Activated, Sub(a, obj)
+                ''                                Debug.Print("Activated")
+                ''                            End Sub
 
                 'ToastNotificationManager.CreateToastNotifier("Swift Connector").Show(toast)
             Else

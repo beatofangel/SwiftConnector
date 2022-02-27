@@ -98,8 +98,13 @@ Public Class HostBrowser
                 userDataFolder = Environment.ExpandEnvironmentVariables(webView2UserDataFolder)
             End If
 
-            env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
-            Await InnerBrowser.EnsureCoreWebView2Async(env)
+            Try
+                env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
+                Await InnerBrowser.EnsureCoreWebView2Async(env)
+            Catch ex As Exception
+                logger.Error(ex)
+            End Try
+
             'Dim assemblyInfo As Reflection.Assembly = Reflection.Assembly.GetExecutingAssembly()
             ''Dim location As String = assemblyInfo.Location
             'Dim uriCodeBase As Uri = New Uri(assemblyInfo.CodeBase)
@@ -219,9 +224,7 @@ Public Class HostBrowser
                                         Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         If dsService.SwitchDataSourceTo(dsObj.GetValue("Id").ToString) Then
                                             Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
-                                            logger.Debug(title)
                                             Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString)
-                                            logger.Debug(content)
                                             'Dim logo = "/Resources/Icon/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
                                             'Toast(title, content, logo)
                                             Toast(title, content)
@@ -268,15 +271,15 @@ Public Class HostBrowser
     End Sub
 
     Private Sub DoResponse(api As String, callback As String, fx As Func(Of String))
-        'Try
-        If String.IsNullOrEmpty(callback) Then
-            fx.Invoke()
-        Else
-            DoResponse(callback, fx.Invoke())
-        End If
-        'Catch ex As Exception
-        '    DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.ToString)))
-        'End Try
+        Try
+            If String.IsNullOrEmpty(callback) Then
+                fx.Invoke()
+            Else
+                DoResponse(callback, fx.Invoke())
+            End If
+        Catch ex As Exception
+            DoResponse(callback, JsonConvert.SerializeObject(New Response(False, api, message:=ex.ToString)))
+        End Try
     End Sub
 
     'Private _basePath As String
