@@ -690,8 +690,10 @@ Module CommonHelper
                     logger.Debug(logoUri.ToString)
                     builder.AddAppLogoOverride(logoUri)
                 End If
+                'builder.Show()
                 Try
-                    builder.Show()
+                    Dim aaa As CustomizeToast = Nothing
+                    builder.Show(aaa)
                 Catch ex As Exception
                     logger.Error(ex)
                 End Try

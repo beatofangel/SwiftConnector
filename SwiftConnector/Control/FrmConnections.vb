@@ -19,9 +19,24 @@
 ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ' SOFTWARE.
 
+Imports System.Windows.Forms
+
 Public Class FrmConnections
+    Public Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        Dim maxHeight = Screen.PrimaryScreen.WorkingArea.Height
+        Dim h = If(maxHeight < 1024, maxHeight, 1024)
+        Me.Size = New Drawing.Size(h / 1024 * 800, h)
+        Me.StartPosition = FormStartPosition.CenterScreen
+        Me.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size
+    End Sub
 
     Private Sub FrmConnections_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hb.Fragment = "connections"
     End Sub
+
 End Class

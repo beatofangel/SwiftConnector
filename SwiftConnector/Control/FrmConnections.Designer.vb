@@ -66,13 +66,11 @@ Partial Class FrmConnections
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 985)
+        Me.ClientSize = New System.Drawing.Size(800, 1024)
         Me.ControlBox = False
         Me.Controls.Add(Me.hb)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.MinimumSize = New System.Drawing.Size(800, 1024)
         Me.Name = "FrmConnections"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "FrmConnections"
         Me.ResumeLayout(False)
 

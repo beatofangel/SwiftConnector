@@ -235,6 +235,7 @@ Public Class HostBrowser
                                     End Function)
             Case "closeWindow"
                 DoResponse(api, cb, Function()
+                                        ParentForm.WindowState = FormWindowState.Normal
                                         ParentForm.Hide()
 
                                         Return JsonConvert.SerializeObject(New Response(True, api))

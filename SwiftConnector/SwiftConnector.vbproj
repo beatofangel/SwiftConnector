@@ -31,12 +31,12 @@
     </StartupObject>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <IsWebBootstrapper>True</IsWebBootstrapper>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>publish\</PublishUrl>
-    <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
+    <PublishUrl>D:\SwiftConnectorRelease\</PublishUrl>
+    <InstallUrl>\\DESKTOP-JKOBM43\SwiftConnectorRelease\</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.75</ApplicationVersion>
+    <ApplicationVersion>1.0.1.82</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>
@@ -342,25 +342,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="publish\setup.exe" />
-    <Content Include="Resources\Icon\lang\de.png" />
-    <Content Include="Resources\Icon\lang\en.png" />
-    <Content Include="Resources\Icon\lang\es.png" />
-    <Content Include="Resources\Icon\lang\fr.png" />
-    <Content Include="Resources\Icon\lang\ja.png" />
-    <Content Include="Resources\Icon\lang\ko.png" />
-    <Content Include="Resources\Icon\lang\pt.png" />
-    <Content Include="Resources\Icon\lang\ru.png" />
-    <Content Include="Resources\Icon\lang\squared\de.png" />
-    <Content Include="Resources\Icon\lang\squared\en.png" />
-    <Content Include="Resources\Icon\lang\squared\es.png" />
-    <Content Include="Resources\Icon\lang\squared\fr.png" />
-    <Content Include="Resources\Icon\lang\squared\ja.png" />
-    <Content Include="Resources\Icon\lang\squared\ko.png" />
-    <Content Include="Resources\Icon\lang\squared\pt.png" />
-    <Content Include="Resources\Icon\lang\squared\ru.png" />
-    <Content Include="Resources\Icon\lang\squared\zh.png" />
-    <Content Include="Resources\Icon\lang\zh.png" />
+    <None Include="publish\setup.exe" />
+    <None Include="Resources\Icon\lang\de.png" />
+    <None Include="Resources\Icon\lang\en.png" />
+    <None Include="Resources\Icon\lang\es.png" />
+    <None Include="Resources\Icon\lang\fr.png" />
+    <None Include="Resources\Icon\lang\ja.png" />
+    <None Include="Resources\Icon\lang\ko.png" />
+    <None Include="Resources\Icon\lang\pt.png" />
+    <None Include="Resources\Icon\lang\ru.png" />
+    <None Include="Resources\Icon\lang\squared\de.png" />
+    <None Include="Resources\Icon\lang\squared\en.png" />
+    <None Include="Resources\Icon\lang\squared\es.png" />
+    <None Include="Resources\Icon\lang\squared\fr.png" />
+    <None Include="Resources\Icon\lang\squared\ja.png" />
+    <None Include="Resources\Icon\lang\squared\ko.png" />
+    <None Include="Resources\Icon\lang\squared\pt.png" />
+    <None Include="Resources\Icon\lang\squared\ru.png" />
+    <None Include="Resources\Icon\lang\squared\zh.png" />
+    <None Include="Resources\Icon\lang\zh.png" />
     <Content Include="Resources\Icon\mysql_large_64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -31,6 +31,7 @@ Public Class ThisAddIn
             If _dlgConnections Is Nothing Then
                 _dlgConnections = New FrmConnections()
             End If
+            _dlgConnections.WindowState = FormWindowState.Normal
             Return _dlgConnections
         End Get
     End Property
