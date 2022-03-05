@@ -22,8 +22,6 @@
 Imports System.Data
 Imports Dapper
 Imports log4net
-Imports Microsoft.Toolkit.Uwp.Notifications
-Imports Windows.UI.Notifications
 
 ''' <summary>
 ''' 表对象(Excel)

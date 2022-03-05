@@ -29,7 +29,6 @@ Imports System.Drawing.Text
 Imports System.IO
 Imports System.Runtime.InteropServices
 Imports log4net
-Imports Microsoft.Toolkit.Uwp.Notifications
 Imports MySqlConnector
 Imports Oracle.ManagedDataAccess.Client
 Imports SwiftConnector.My.Resources
@@ -675,67 +674,67 @@ Module CommonHelper
         With Environment.OSVersion.Version
             ' Windows 10 (introduced in 10.0.10240.0)
             If .Major >= 10 And .Minor >= 0 And .Build >= 10240 Then
-                Dim builder = New ToastContentBuilder
+                'Dim builder = New ToastContentBuilder
 
-                If args.Length > 0 Then
-                    builder.AddText(args(0))
-                End If
-                If args.Length > 1 Then
-                    builder.AddText(args(1))
-                End If
-                '.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
-                If args.Length > 2 Then
-                    Dim logoUri = New Uri(args(2), UriKind.Relative)
-                    'Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
-                    logger.Debug(logoUri.ToString)
-                    builder.AddAppLogoOverride(logoUri)
-                End If
-                'builder.Show()
-                Try
-                    Dim aaa As CustomizeToast = Nothing
-                    builder.Show(aaa)
-                Catch ex As Exception
-                    logger.Error(ex)
-                End Try
+                'If args.Length > 0 Then
+                '    builder.AddText(args(0))
+                'End If
+                'If args.Length > 1 Then
+                '    builder.AddText(args(1))
+                'End If
+                ''.AddInlineImage(New Uri(Path.Combine(GetBasePath, "logo here"))) ' TODO "Resources\Icon\oracle_mini_32.png"
+                'If args.Length > 2 Then
+                '    Dim logoUri = New Uri(args(2), UriKind.Relative)
+                '    'Dim logoUri = New Uri(Path.Combine(GetBasePath, args(2)))
+                '    logger.Debug(logoUri.ToString)
+                '    builder.AddAppLogoOverride(logoUri)
+                'End If
+                ''builder.Show()
+                'Try
+                '    ToastNotificationManager.CreateToastNotifier("swift-connector").Show(New ToastNotification(builder.GetXml) With {.Tag = "swift-connector"})
+                '    'builder.Show()
+                'Catch ex As Exception
+                '    logger.Error(ex)
+                'End Try
 
                 'AddHandler ToastNotificationManagerCompat.OnActivated, Sub(a)
                 '                                                           Debug.Print(a.Argument)
                 '                                                       End Sub
 
-                'Dim toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText02)
+                Dim toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText02)
 
-                'Dim textParts = toastXml.GetElementsByTagName("text")
-                'If args.Length > 0 Then
-                '    textParts(0).AppendChild(toastXml.CreateTextNode(args(0)))
-                'End If
-                'If args.Length > 1 Then
-                '    textParts(1).AppendChild(toastXml.CreateTextNode(args(1)))
-                'End If
-                'If args.Length > 2 Then
-                '    Dim imageParts = toastXml.GetElementsByTagName("image")
-                '    imageParts(0).Attributes.GetNamedItem("src").NodeValue = New Uri(args(2), UriKind.Relative)
-                'End If
+                Dim textParts = toastXml.GetElementsByTagName("text")
+                If args.Length > 0 Then
+                    textParts(0).AppendChild(toastXml.CreateTextNode(args(0)))
+                End If
+                If args.Length > 1 Then
+                    textParts(1).AppendChild(toastXml.CreateTextNode(args(1)))
+                End If
+                If args.Length > 2 Then
+                    Dim imageParts = toastXml.GetElementsByTagName("image")
+                    imageParts(0).Attributes.GetNamedItem("src").NodeValue = "file:///" & Path.Combine(GetBasePath, args(2))
+                End If
 
-                ''imageParts(0).Attributes.GetNamedItem("src").NodeValue = "data:image/png;base64," & Convert.ToBase64String(IconResource.zh.ToByteArray(Imaging.ImageFormat.Bmp))
+                'imageParts(0).Attributes.GetNamedItem("src").NodeValue = "data:image/png;base64," & Convert.ToBase64String(IconResource.zh.ToByteArray(Imaging.ImageFormat.Bmp))
 
-                ''Dim audioParts = toastXml.CreateElement("audio")
-                ''audioParts.SetAttribute("src", "ms-winsoundevent:Notification.Reminder")
-                ''toastXml.DocumentElement.AppendChild(audioParts)
+                'Dim audioParts = toastXml.CreateElement("audio")
+                'audioParts.SetAttribute("src", "ms-winsoundevent:Notification.Reminder")
+                'toastXml.DocumentElement.AppendChild(audioParts)
 
-                ''Dim commandParts = toastXml.CreateElement("commands")
-                ''toastXml.DocumentElement.AppendChild(commandParts)
-                ''Dim command = toastXml.CreateElement("command")
-                ''command.SetAttribute("id", "dismiss")
-                ''command.SetAttribute("arguments", "testdismiss")
-                ''commandParts.AppendChild(command)
+                'Dim commandParts = toastXml.CreateElement("commands")
+                'toastXml.DocumentElement.AppendChild(commandParts)
+                'Dim command = toastXml.CreateElement("command")
+                'command.SetAttribute("id", "dismiss")
+                'command.SetAttribute("arguments", "testdismiss")
+                'commandParts.AppendChild(command)
 
-                'Dim toast = New ToastNotification(toastXml)
+                'AddHandler toast.Activated, Sub(a, obj)
+                '                                Debug.Print("Activated")
+                '                            End Sub
 
-                ''AddHandler toast.Activated, Sub(a, obj)
-                ''                                Debug.Print("Activated")
-                ''                            End Sub
-
-                'ToastNotificationManager.CreateToastNotifier("Swift Connector").Show(toast)
+                ToastNotificationManager.CreateToastNotifier("Swift Connector").Show(New ToastNotification(toastXml) With {
+                    .Tag = "swift-connector"
+                })
             Else
                 MsgBox(args(1), Title:=args(0))
             End If

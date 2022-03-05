@@ -225,9 +225,9 @@ Public Class HostBrowser
                                         If dsService.SwitchDataSourceTo(dsObj.GetValue("Id").ToString) Then
                                             Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
                                             Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString)
-                                            'Dim logo = "/Resources/Icon/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
-                                            'Toast(title, content, logo)
-                                            Toast(title, content)
+                                            Dim logo = "Resources/Icon/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
+                                            Toast(title, content, logo)
+                                            'Toast(title, content)
                                             Return JsonConvert.SerializeObject(New Response(True, api))
                                         Else
                                             Return JsonConvert.SerializeObject(New Response(False, api, message:="Switch failed"))
@@ -310,10 +310,11 @@ Public Class HostBrowser
 
     Public Sub HostBrowser_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Visible And InnerBrowser.CoreWebView2 IsNot Nothing Then
-            Dim api = "refreshConnections"
-            DoResponse(api, "refreshConnections", Function()
-                                                      Return JsonConvert.SerializeObject(New Response(True, api, data:=Globals.ThisAddIn.CurDataSource.Id))
-                                                  End Function)
+            Dim api = "initPage"
+            Dim callback = "initPage"
+            DoResponse(api, callback, Function()
+                                          Return JsonConvert.SerializeObject(New Response(True, api, data:=Globals.ThisAddIn.CurDataSource.Id))
+                                      End Function)
         End If
     End Sub
 End Class
