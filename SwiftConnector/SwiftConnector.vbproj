@@ -31,12 +31,12 @@
     </StartupObject>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>D:\SwiftConnectorRelease\</PublishUrl>
-    <InstallUrl>\\DESKTOP-JKOBM43\SwiftConnectorRelease\</InstallUrl>
+    <PublishUrl>publish\</PublishUrl>
+    <InstallUrl>https://raw.githubusercontent.com/beatofangel/SwiftConnector/master/SwiftConnector/publish/</InstallUrl>
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.1.82</ApplicationVersion>
+    <ApplicationVersion>1.0.1.83</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>
