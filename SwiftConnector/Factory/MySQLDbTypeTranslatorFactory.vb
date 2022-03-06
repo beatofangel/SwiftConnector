@@ -56,94 +56,104 @@ Public Class MySQLDbTypeTranslatorFactory
             strDbType = "int32"
         End If
         If [Enum].TryParse(strDbType, True, myDbType) Then
-            Select Case myDbType
-                Case MySqlDbType.Bool
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.[Decimal]
-                    rst = DbType.Decimal
-                Case MySqlDbType.[Byte]
-                    rst = DbType.Byte
-                Case MySqlDbType.Int16
-                    rst = DbType.Int16
-                Case MySqlDbType.Int32
-                    rst = DbType.Int32
-                Case MySqlDbType.Float
-                    rst = DbType.Single
-                Case MySqlDbType.[Double]
-                    rst = DbType.Double
-                Case MySqlDbType.Null
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.Timestamp
-                    rst = DbType.Date
-                Case MySqlDbType.Int64
-                    rst = DbType.Int64
-                Case MySqlDbType.Int24
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.[Date]
-                    rst = DbType.Date
-                Case MySqlDbType.Time
-                    rst = DbType.Date
-                Case MySqlDbType.DateTime
-                    rst = DbType.Date
-                Case MySqlDbType.Year
-                    rst = DbType.UInt16
-                Case MySqlDbType.Newdate
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.VarString
-                    rst = DbType.String
-                Case MySqlDbType.Bit
-                    rst = DbType.Binary
-                Case MySqlDbType.JSON
-                    rst = DbType.Object
-                Case MySqlDbType.NewDecimal
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.[Enum]
-                    rst = DbType.String
-                Case MySqlDbType.[Set]
-                    rst = DbType.String
-                Case MySqlDbType.TinyBlob
-                    rst = DbType.Object
-                Case MySqlDbType.MediumBlob
-                    rst = DbType.Object
-                Case MySqlDbType.LongBlob
-                    rst = DbType.Object
-                Case MySqlDbType.Blob
-                    rst = DbType.Object
-                Case MySqlDbType.VarChar
-                    rst = DbType.String
-                Case MySqlDbType.[String]
-                    rst = DbType.String
-                Case MySqlDbType.Geometry
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.UByte
-                    rst = DbType.UInt16
-                Case MySqlDbType.UInt16
-                    rst = DbType.UInt16
-                Case MySqlDbType.UInt32
-                    rst = DbType.UInt32
-                Case MySqlDbType.UInt64
-                    rst = DbType.UInt64
-                Case MySqlDbType.UInt24
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case MySqlDbType.Binary
-                    rst = DbType.Binary
-                Case MySqlDbType.VarBinary
-                    rst = DbType.Binary
-                Case MySqlDbType.TinyText
-                    rst = DbType.String
-                Case MySqlDbType.MediumText
-                    rst = DbType.Object
-                Case MySqlDbType.LongText
-                    rst = DbType.Object
-                Case MySqlDbType.Text
-                    rst = DbType.String
-                Case MySqlDbType.Guid
-                    rst = DbType.Binary
-            End Select
+            rst = Convert2DbType(myDbType)
         Else
             logger.Debug("type translate failed from type [" & strDbType & "]")
         End If
 
+        Return rst
+    End Function
+
+    Public Function Parse(dbType As String) As DbType Implements IDbTypeTranslatorFactory.Parse
+        Return Convert2DbType([Enum].Parse(GetType(MySqlDbType), dbType, True))
+    End Function
+
+    Private Function Convert2DbType(myDbType As MySqlDbType) As DbType
+        Dim rst As DbType
+        Select Case myDbType
+            Case MySqlDbType.Bool
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.[Decimal]
+                rst = DbType.Decimal
+            Case MySqlDbType.[Byte]
+                rst = DbType.Byte
+            Case MySqlDbType.Int16
+                rst = DbType.Int16
+            Case MySqlDbType.Int32
+                rst = DbType.Int32
+            Case MySqlDbType.Float
+                rst = DbType.Single
+            Case MySqlDbType.[Double]
+                rst = DbType.Double
+            Case MySqlDbType.Null
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.Timestamp
+                rst = DbType.Date
+            Case MySqlDbType.Int64
+                rst = DbType.Int64
+            Case MySqlDbType.Int24
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.[Date]
+                rst = DbType.Date
+            Case MySqlDbType.Time
+                rst = DbType.Date
+            Case MySqlDbType.DateTime
+                rst = DbType.Date
+            Case MySqlDbType.Year
+                rst = DbType.UInt16
+            Case MySqlDbType.Newdate
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.VarString
+                rst = DbType.String
+            Case MySqlDbType.Bit
+                rst = DbType.Binary
+            Case MySqlDbType.JSON
+                rst = DbType.Object
+            Case MySqlDbType.NewDecimal
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.[Enum]
+                rst = DbType.String
+            Case MySqlDbType.[Set]
+                rst = DbType.String
+            Case MySqlDbType.TinyBlob
+                rst = DbType.Object
+            Case MySqlDbType.MediumBlob
+                rst = DbType.Object
+            Case MySqlDbType.LongBlob
+                rst = DbType.Object
+            Case MySqlDbType.Blob
+                rst = DbType.Object
+            Case MySqlDbType.VarChar
+                rst = DbType.String
+            Case MySqlDbType.[String]
+                rst = DbType.String
+            Case MySqlDbType.Geometry
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.UByte
+                rst = DbType.UInt16
+            Case MySqlDbType.UInt16
+                rst = DbType.UInt16
+            Case MySqlDbType.UInt32
+                rst = DbType.UInt32
+            Case MySqlDbType.UInt64
+                rst = DbType.UInt64
+            Case MySqlDbType.UInt24
+                Throw New NotImplementedException(myDbType.ToString & " is not currently supported!")
+            Case MySqlDbType.Binary
+                rst = DbType.Binary
+            Case MySqlDbType.VarBinary
+                rst = DbType.Binary
+            Case MySqlDbType.TinyText
+                rst = DbType.String
+            Case MySqlDbType.MediumText
+                rst = DbType.Object
+            Case MySqlDbType.LongText
+                rst = DbType.Object
+            Case MySqlDbType.Text
+                rst = DbType.String
+            Case MySqlDbType.Guid
+                rst = DbType.Binary
+        End Select
         Return rst
     End Function
 End Class

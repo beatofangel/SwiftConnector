@@ -21,6 +21,8 @@
 
 Imports System.ComponentModel
 Imports System.Configuration
+Imports System.Data
+Imports System.Data.Common
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports System.Web
@@ -41,6 +43,8 @@ Public Class HostBrowser
     Private dsService As New DatasourceService
 
     Private textService As New TextService
+
+    Private dapperService As New DapperService
 
     Private Const DEFAULT_WEBVIEW2_USERDATAFOLDER As String = "SwiftConnector\temp\"
     'Private Const HOST As String = "dbtoolsaddin.local"
@@ -155,17 +159,17 @@ Public Class HostBrowser
                 DoResponse(api, cb, Function() JsonConvert.SerializeObject(New Response(True, api, data:=dsService.FindAllDataSource())))
             Case "addConnection"
                 DoResponse(api, cb, Function()
-                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         Dim ds = New DataSource With {
                                         .Id = Guid.NewGuid.ToString.Replace("-", ""),
-                                        .Type = dsObj.GetValue("databaseType").ToString,
-                                        .Name = dsObj.GetValue("connectionName").ToString,
-                                        .Datasource = dsObj.GetValue("host").ToString,
-                                        .Port = If(IsNull(dsObj.GetValue("port")), Nothing, dsObj.GetValue("port").ToString),
-                                        .Database = If(IsNull(dsObj.GetValue("databaseName")), Nothing, dsObj.GetValue("databaseName").ToString),
-                                        .Username = If(IsNull(dsObj.GetValue("username")), Nothing, dsObj.GetValue("username").ToString),
-                                        .Password = If(IsNull(dsObj.GetValue("password")), Nothing, dsObj.GetValue("password").ToString),
-                                        .Mode = If(IsNull(dsObj.GetValue("protected")), 0, If("1".Equals(dsObj.GetValue("protected").ToString), 1, 0)),
+                                        .Type = jsonObj.GetValue("databaseType").ToString,
+                                        .Name = jsonObj.GetValue("connectionName").ToString,
+                                        .Datasource = jsonObj.GetValue("host").ToString,
+                                        .Port = If(IsNull(jsonObj.GetValue("port")), Nothing, jsonObj.GetValue("port").ToString),
+                                        .Database = If(IsNull(jsonObj.GetValue("databaseName")), Nothing, jsonObj.GetValue("databaseName").ToString),
+                                        .Username = If(IsNull(jsonObj.GetValue("username")), Nothing, jsonObj.GetValue("username").ToString),
+                                        .Password = If(IsNull(jsonObj.GetValue("password")), Nothing, jsonObj.GetValue("password").ToString),
+                                        .Mode = If(IsNull(jsonObj.GetValue("protected")), 0, If("1".Equals(jsonObj.GetValue("protected").ToString), 1, 0)),
                                         .Current = False,
                                         .Lastchange = Date.Now
                                     }
@@ -175,18 +179,18 @@ Public Class HostBrowser
                                     End Function)
             Case "editConnection"
                 DoResponse(api, cb, Function()
-                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         Dim ds = New DataSource With {
-                                        .Id = dsObj.GetValue("id").ToString,
-                                        .Type = dsObj.GetValue("databaseType").ToString,
-                                        .Name = dsObj.GetValue("connectionName").ToString,
-                                        .Datasource = dsObj.GetValue("host").ToString,
-                                        .Port = dsObj.GetValue("port").ToString,
-                                        .Database = dsObj.GetValue("databaseName").ToString,
-                                        .Username = dsObj.GetValue("username").ToString,
-                                        .Password = dsObj.GetValue("password").ToString,
-                                        .Mode = If("1".Equals(dsObj.GetValue("protected").ToString), 1, 0),
-                                        .Current = dsObj.GetValue("current").ToString,
+                                        .Id = jsonObj.GetValue("id").ToString,
+                                        .Type = jsonObj.GetValue("databaseType").ToString,
+                                        .Name = jsonObj.GetValue("connectionName").ToString,
+                                        .Datasource = jsonObj.GetValue("host").ToString,
+                                        .Port = jsonObj.GetValue("port").ToString,
+                                        .Database = jsonObj.GetValue("databaseName").ToString,
+                                        .Username = jsonObj.GetValue("username").ToString,
+                                        .Password = jsonObj.GetValue("password").ToString,
+                                        .Mode = If("1".Equals(jsonObj.GetValue("protected").ToString), 1, 0),
+                                        .Current = jsonObj.GetValue("current").ToString,
                                         .Lastchange = Date.Now
                                     }
                                         dsService.EditDataSource(ds)
@@ -195,9 +199,9 @@ Public Class HostBrowser
                                     End Function)
             Case "deleteConnection"
                 DoResponse(api, cb, Function()
-                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         Dim ds = New DataSource With {
-                                       .Id = dsObj.GetValue("id").ToString
+                                       .Id = jsonObj.GetValue("id").ToString
                                    }
                                         dsService.DeleteDataSource(ds)
 
@@ -205,14 +209,14 @@ Public Class HostBrowser
                                     End Function)
             Case "testConnection"
                 DoResponse(api, cb, Function()
-                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         Dim ds = New DataSource With {
-                                            .Type = dsObj.GetValue("databaseType").ToString,
-                                            .Datasource = dsObj.GetValue("host").ToString,
-                                            .Port = If(IsNull(dsObj.GetValue("port")), Nothing, dsObj.GetValue("port").ToString),
-                                            .Database = If(IsNull(dsObj.GetValue("databaseName")), Nothing, dsObj.GetValue("databaseName").ToString),
-                                            .Username = If(IsNull(dsObj.GetValue("username")), Nothing, dsObj.GetValue("username").ToString),
-                                            .Password = If(IsNull(dsObj.GetValue("password")), Nothing, dsObj.GetValue("password").ToString)
+                                            .Type = jsonObj.GetValue("databaseType").ToString,
+                                            .Datasource = jsonObj.GetValue("host").ToString,
+                                            .Port = If(IsNull(jsonObj.GetValue("port")), Nothing, jsonObj.GetValue("port").ToString),
+                                            .Database = If(IsNull(jsonObj.GetValue("databaseName")), Nothing, jsonObj.GetValue("databaseName").ToString),
+                                            .Username = If(IsNull(jsonObj.GetValue("username")), Nothing, jsonObj.GetValue("username").ToString),
+                                            .Password = If(IsNull(jsonObj.GetValue("password")), Nothing, jsonObj.GetValue("password").ToString)
                                         }
 
                                         TestConnection(ds)
@@ -221,11 +225,11 @@ Public Class HostBrowser
                                     End Function)
             Case "switch2Current"
                 DoResponse(api, cb, Function()
-                                        Dim dsObj = JsonConvert.DeserializeObject(Of JObject)(args)
-                                        If dsService.SwitchDataSourceTo(dsObj.GetValue("Id").ToString) Then
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        If dsService.SwitchDataSourceTo(jsonObj.GetValue("Id").ToString) Then
                                             Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
-                                            Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", dsObj.GetValue("Name").ToString)
-                                            Dim logo = "Resources/Icon/" & DataSourceDic(dsObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
+                                            Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", jsonObj.GetValue("Name").ToString)
+                                            Dim logo = "Resources/Icon/" & DataSourceDic(jsonObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
                                             Toast(title, content, logo)
                                             'Toast(title, content)
                                             Return JsonConvert.SerializeObject(New Response(True, api))
@@ -233,6 +237,56 @@ Public Class HostBrowser
                                             Return JsonConvert.SerializeObject(New Response(False, api, message:="Switch failed"))
                                         End If
                                     End Function)
+            Case "curConnection"
+                DoResponse(api, cb, Function()
+                                        Return JsonConvert.SerializeObject(New Response(True, api, data:=Globals.ThisAddIn.CurDataSource.Type))
+                                    End Function)
+            Case "sqlQuery"
+                DoResponse(api, cb, Function()
+                                        Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
+                                        Dim sql = jsonObj.GetValue("sql").ToString()
+                                        Dim data As New JObject
+                                        Dim items As New JArray
+                                        Dim headers As New JArray
+                                        Dim forward = Boolean.Parse(jsonObj.GetValue("forward").ToString)
+                                        Dim last = Integer.Parse(jsonObj.GetValue("more").ToString)
+                                        Dim start = If(forward, last, last - 50)
+                                        Dim more As Integer
+                                        Dim maxLength = Globals.ThisAddIn.MyRibbon.RecordLimit
+                                        Dim tx = dapperService.ExecuteReader(Sub(reader As DbDataReader)
+
+                                                                                 For i = 0 To reader.FieldCount - 1
+                                                                                     Dim header As New JObject
+                                                                                     header.Add(New JProperty("text", reader.GetName(i)))
+                                                                                     header.Add(New JProperty("value", reader.GetName(i)))
+                                                                                     headers.Add(header)
+                                                                                 Next
+
+                                                                                 Dim idx = 0
+                                                                                 While reader.Read
+                                                                                     If idx < start Then
+                                                                                         idx += 1
+                                                                                     Else
+                                                                                         If items.Count >= maxLength Then
+                                                                                             more = start + maxLength
+                                                                                             Exit While
+                                                                                         End If
+                                                                                         Dim item As New JObject
+                                                                                         For i = 0 To reader.FieldCount - 1
+                                                                                             item.Add(New JProperty(reader.GetName(i), reader.GetValue(i)))
+                                                                                         Next
+                                                                                         items.Add(item)
+                                                                                     End If
+                                                                                 End While
+                                                                             End Sub, Integer.Parse(jsonObj.GetValue("tx")), sql:=sql)
+                                        data.Add("tx", tx)
+                                        data.Add("more", more)
+                                        data.Add("forward", forward)
+                                        data.Add("items", items)
+                                        data.Add("headers", headers)
+                                        Return JsonConvert.SerializeObject(New Response(True, api, data:=data))
+                                    End Function)
+
             Case "closeWindow"
                 DoResponse(api, cb, Function()
                                         ParentForm.WindowState = FormWindowState.Normal
@@ -311,10 +365,34 @@ Public Class HostBrowser
     Public Sub HostBrowser_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Visible And InnerBrowser.CoreWebView2 IsNot Nothing Then
             Dim api = "initPage"
-            Dim callback = "initPage"
+            Dim callback = GetInitMethod()
             DoResponse(api, callback, Function()
-                                          Return JsonConvert.SerializeObject(New Response(True, api, data:=Globals.ThisAddIn.CurDataSource.Id))
+                                          Return JsonConvert.SerializeObject(New Response(True, api, data:=GetInitParams(callback)))
                                       End Function)
         End If
     End Sub
+
+    ''' <summary>
+    ''' 首次打开webview2来不及初始化，无法接收到参数 TODO 删除
+    ''' </summary>
+    ''' <param name="callback"></param>
+    ''' <returns></returns>
+    Private Function GetInitParams(callback) As String
+        Select Case callback
+            Case "initConnections"
+                Return Globals.ThisAddIn.CurDataSource.Id
+            Case "initQueryEditor"
+                Return Globals.ThisAddIn.CurDataSource.Type
+            Case Else
+                Return ""
+        End Select
+    End Function
+
+    Private Function GetInitMethod() As String
+        Dim m = "init"
+        Array.ForEach(_fragment.Split("-"), Sub(e)
+                                                m = m & e.Substring(0, 1).ToUpper & e.Substring(1)
+                                            End Sub)
+        Return m
+    End Function
 End Class

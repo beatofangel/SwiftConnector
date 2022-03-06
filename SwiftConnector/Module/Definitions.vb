@@ -123,6 +123,7 @@ Public Module Definitions
         TT_RB_NORMAL_MODE = 26
         TT_RB_IMPORT = 27
         TT_TP_SETTINGS = 28
+        TT_RB_SQL_EDITOR = 29
         TT_MSG_UNSUPPORTED_LANG_1 = 1001
         TT_MSG_UNSUPPORTED_LANG_2 = 1002
         TT_MSG_SWITCH_SUCCESS = 1003

@@ -162,6 +162,7 @@ Public Class ThisAddIn
         _hotKeys.Add("Select", New XlHotKey("BtnSelect_Click", KEY_CTRL, "Q"))
         _hotKeys.Add("Insert", New XlHotKey("BtnInsert_Click", KEY_CTRL, "W"))
         _hotKeys.Add("Delete", New XlHotKey("BtnDelete_Click", KEY_CTRL, "D"))
+        _hotKeys.Add("SqlEditor", New XlHotKey("BtnSqlEditor_Click", KEY_CTRL, KEY_SHIFT, "Q"))
         '_hotKeys.Add("SettingStyle", New XlHotKey("TglBtnStyleSettings_Click", KEY_CTRL, KEY_SHIFT, "Enter")) ' 与excel数组公式快捷键冲突
         _hotKeys.Bind(Sub(hotkey As String)
                           Try

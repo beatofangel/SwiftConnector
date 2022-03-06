@@ -22,6 +22,8 @@
 Imports System.Data
 
 Public Interface IDbTypeTranslatorFactory
+    Function Parse(dbType As String) As DbType
+
     Function Translate(independantDbType As String) As DbType
 
     Function Format(dbType As DbType, val As String) As Object

@@ -3,9 +3,13 @@
 	<ribbon>
 		<tabs>
 			<tab id="SwiftConnector" getLabel="Common_GetLabel">
-				<group id="GrpOperations" getLabel="Common_GetLabel">
+				<group id="GrpDesignMode" label="test">
+					<toggleButton id="TglBtnDesignMode" onAction="TglBtnDesignMode_Click" imageMso="DesignMode" label="Design Mode" size="large"/>
+				</group>
+				<group id="GrpOperations" getLabel="Common_GetLabel" getVisible="SwitchDesignMode_GetVisible">
+					<button id="BtnSqlEditor" imageMso="CreateAccessSqlQuery" getEnabled="BtnSqlEditor_GetEnabled" onAction="BtnSqlEditor_Click" screentip="OPEN SQL EDITOR" supertip="Shortcut: Ctrl + Shift + Q" getLabel="Common_GetLabel" size="large" />
 					<button id="BtnSelect" imageMso="TableFind" getEnabled="BtnSelect_GetEnabled" onAction="BtnSelect_Click" screentip="DQL &lt;SELECT&gt;" supertip="Shortcut: Ctrl + Q" getLabel="Common_GetLabel" size="large" />
-          <splitButton id="SpltBtnInsert" getEnabled="SpltBtnInsert_GetEnabled" size="large" >
+					<splitButton id="SpltBtnInsert" getEnabled="SpltBtnInsert_GetEnabled" size="large" >
 						<button id="BtnInsert" getImage="BtnInsert_GetImage" onAction="BtnInsert_Click" screentip="DML &lt;INSERT&gt;" supertip="Shortcut: Ctrl + W" getLabel="BtnInsert_GetLabel" />
 						<menu id="MenuInsert">
 							<button id="BtnInsertNormalMode" onAction="BtnInsertNormalMode_Click" getImage="BtnInsertNormalMode_GetImage" getLabel="Common_GetLabel"/>
@@ -19,33 +23,33 @@
 							<button id="BtnDeleteMode" onAction="BtnDeleteMode_Click" getImage="BtnDeleteMode_GetImage" getLabel="Common_GetLabel"/>
 						</menu>
 					</splitButton>
-          <!--<splitButton id="SpltBtnImport" getEnabled="SpltBtnImport_GetEnabled" size="large" >
+					<!--<splitButton id="SpltBtnImport" getEnabled="SpltBtnImport_GetEnabled" size="large" >
             <button id="BtnImport" imageMso="DatabaseSqlServer" onAction="BtnImport_Click" getScreentip="BtnImport_GetScreenTip" getLabel="BtnImport_GetLabel" />
             <menu id="MenuImport">
               <button id="BtnImportActiveSheetMode" onAction="BtnImportActiveSheetMode_Click" getImage="BtnImportActiveSheetMode_GetImage" getLabel="Common_GetLabel"/>
               <button id="BtnImportSelectedSheetMode" onAction="BtnImportSelectedSheetMode_Click" getImage="BtnImportSelectedSheetMode_GetImage" getLabel="Common_GetLabel"/>
             </menu>
           </splitButton>-->
-          <button id="BtnImport" imageMso="DatabaseSqlServer" getEnabled="BtnImport_GetEnabled" onAction="BtnImport_Click" getLabel="Common_GetLabel" size="large" />
+					<button id="BtnImport" imageMso="DatabaseSqlServer" getEnabled="BtnImport_GetEnabled" onAction="BtnImport_Click" getLabel="Common_GetLabel" size="large" />
 				</group>
 				<group id="GrpDataSource" getLabel="Common_GetLabel">
 					<dynamicMenu id="DMenuDatabase" getImage="DMenuDatabase_GetImage" getLabel="DMenuDatabase_GetLabel" size="large" getContent="DMenuDatabase_GetContent"/>
 				</group>
 				<group id="GrpSettings" getLabel="Common_GetLabel">
-          <dynamicMenu id="DMenuOperateMode" getImage="DMenuOperateMode_GetImage" getLabel="DMenuOperateMode_GetLabel" getScreentip="DMenuOperateMode_GetScreentip" size="large" getContent="DMenuOperateMode_GetContent"/>
-          <!--<toggleButton id="TglBtnProtectedMode" onAction="TglBtnProtectedMode_Click" getPressed="TglBtnProtectedMode_GetPressed" getScreentip="TglBtnProtectedMode_GetScreentip" supertip="The mode of current datasource" getImage="TglBtnProtectedMode_GetImage" getLabel="TglBtnProtectedMode_GetLabel" size="large"/>-->
-          <toggleButton id="TglBtnShowProps" onAction="TglBtnShowProps_Click" getPressed="TglBtnShowProps_GetPressed" supertip="Show property column" imageMso="CellsInsertDialog" getLabel="Common_GetLabel" size="large"/>
-          <toggleButton id="TglBtnAutoFitColumns" onAction="TglBtnAutoFitColumns_Click" getPressed="TglBtnAutoFitColumns_GetPressed" supertip="Column auto fit" imageMso="CellWidth" getLabel="Common_GetLabel" size="large"/>
-          <dynamicMenu id="DMenuRecordLimit" imageMso="ConditionalFormattingHighlightLessThan" getLabel="DMenuRecordLimit_GetLabel" getScreentip="DMenuRecordLimit_GetScreentip" size="large" getContent="DMenuRecordLimit_GetContent"/>
+					<dynamicMenu id="DMenuOperateMode" getImage="DMenuOperateMode_GetImage" getLabel="DMenuOperateMode_GetLabel" getScreentip="DMenuOperateMode_GetScreentip" size="large" getContent="DMenuOperateMode_GetContent"/>
+					<!--<toggleButton id="TglBtnProtectedMode" onAction="TglBtnProtectedMode_Click" getPressed="TglBtnProtectedMode_GetPressed" getScreentip="TglBtnProtectedMode_GetScreentip" supertip="The mode of current datasource" getImage="TglBtnProtectedMode_GetImage" getLabel="TglBtnProtectedMode_GetLabel" size="large"/>-->
+					<toggleButton id="TglBtnShowProps" onAction="TglBtnShowProps_Click" getPressed="TglBtnShowProps_GetPressed" supertip="Show property column" imageMso="CellsInsertDialog" getLabel="Common_GetLabel" size="large"/>
+					<toggleButton id="TglBtnAutoFitColumns" onAction="TglBtnAutoFitColumns_Click" getPressed="TglBtnAutoFitColumns_GetPressed" supertip="Column auto fit" imageMso="CellWidth" getLabel="Common_GetLabel" size="large"/>
+					<dynamicMenu id="DMenuRecordLimit" imageMso="ConditionalFormattingHighlightLessThan" getLabel="DMenuRecordLimit_GetLabel" getScreentip="DMenuRecordLimit_GetScreentip" size="large" getContent="DMenuRecordLimit_GetContent"/>
 					<toggleButton id="TglBtnStyleSettings" onAction="TglBtnStyleSettings_Click" getPressed="TglBtnStyleSettings_GetPressed" imageMso="ChangeStylesMenu" screentip="Shortcut" supertip="Ctrl + shift + Enter" getLabel="Common_GetLabel" size="large" />
-          <button id="BtnResetStyle" onAction="BtnResetStyle_Click" imageMso="ClearMenu" getLabel="Common_GetLabel" size="large"/>
+					<button id="BtnResetStyle" onAction="BtnResetStyle_Click" imageMso="ClearMenu" getLabel="Common_GetLabel" size="large"/>
 				</group>
-        <group id="GrpLanguage" getLabel="Common_GetLabel">
-          <dynamicMenu id="DMenuLanguage" getImage="DMenuLanguage_GetImage" getLabel="DMenuLanguage_GetLabel" size="large" getContent="DMenuLanguage_GetContent"/>
-        </group>
-        <group id="GrpAbout" getLabel="Common_GetLabel">
-          <button id="BtnAbout" onAction="BtnAbout_Click" imageMso="Help" getLabel="Common_GetLabel" size="large"/>
-        </group>
+				<group id="GrpLanguage" getLabel="Common_GetLabel">
+					<dynamicMenu id="DMenuLanguage" getImage="DMenuLanguage_GetImage" getLabel="DMenuLanguage_GetLabel" size="large" getContent="DMenuLanguage_GetContent"/>
+				</group>
+				<group id="GrpAbout" getLabel="Common_GetLabel">
+					<button id="BtnAbout" onAction="BtnAbout_Click" imageMso="Help" getLabel="Common_GetLabel" size="large"/>
+				</group>
 				<!--<group id="GrpStyle" label="Style">
 					<buttonGroup id="BtnGrpTableStyle">
 						<button id="BtnTableFont" imageMso="AsianLayoutCharactersEnclose" onAction="BtnTableFont_Click" />

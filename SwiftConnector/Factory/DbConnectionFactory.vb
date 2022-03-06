@@ -38,17 +38,18 @@ Public Class DbConnectionFactory
     ''' <returns></returns>
     Public Shared Function CreateConnection(ds As DataSource) As IDbConnection
         Dim rst As IDbConnection = Nothing
-        Dim connStr As String = Nothing
+        'Dim connStr As String = Nothing
         Select Case ds.Type
             Case DataSourceType.Oracle
-                connStr = "User id=" & ds.Username & ";Password=" & ds.Password & ";Data Source=" &
-                    "//" & ds.Datasource & If(String.IsNullOrEmpty(ds.Port), "", ":" & ds.Port) & If(String.IsNullOrEmpty(ds.Database), "", "/" & ds.Database)
+                Dim connBuilder = New OracleConnectionStringBuilder() With {
+                    .DataSource = ds.Datasource & If(String.IsNullOrEmpty(ds.Port), "", ":" & ds.Port) & If(String.IsNullOrEmpty(ds.Database), "", "/" & ds.Database),
+                    .UserID = ds.Username,
+                    .Password = ds.Password
+                }
+                rst = New OracleConnection(connBuilder.ConnectionString)
                 'connStr = "User id=" & ds.Username & ";Password=" & ds.Password & ";Data Source=" &
-                '    "(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)" &
-                '    "(HOST=" & ds.Datasource & ")(PORT=" & If(String.IsNullOrEmpty(ds.Port), "1521", ds.Sid) & "))(CONNECT_DATA=" &
-                '    "(SERVICE_NAME=" & If(String.IsNullOrEmpty(ds.Sid), "XE", ds.Sid) & ")))"
-                'connStr = "Password=" & ds.Password & ";User ID=" & ds.Username & ";Data Source=" & ds.Datasource
-                rst = New OracleConnection(connStr)
+                '    "//" & ds.Datasource & If(String.IsNullOrEmpty(ds.Port), "", ":" & ds.Port) & If(String.IsNullOrEmpty(ds.Database), "", "/" & ds.Database)
+                'rst = New OracleConnection(connStr)
             Case DataSourceType.MySQL
                 Dim connBuilder = New MySqlConnectionStringBuilder() With {
                     .Server = ds.Datasource,

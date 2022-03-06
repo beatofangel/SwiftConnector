@@ -48,6 +48,8 @@ Public Class Ribbon
 
     Protected Shared ReadOnly Property DatasourceService As DatasourceService = New DatasourceService()
 
+    Public Property DesignMode As Boolean
+
     Private _delMode As DeleteMode?
     Public Property DelMode As DeleteMode
         Get
@@ -295,6 +297,38 @@ Public Class Ribbon
         TestLanguageSupport(Globals.ThisAddIn.StrLangCode)
         Me.ribbon = ribbonUI
     End Sub
+
+    Public Sub BtnSqlEditor_Click(ByVal control As Office.IRibbonControl)
+        logger.Debug("BtnSqlEditor_Click Start")
+        If IsEditing() Then
+            MsgBox("Excel is in Edit Mode.")
+            Return
+        End If
+
+        Globals.ThisAddIn.DlgConnections.showDialog2("query-editor")
+
+        'Globals.ThisAddIn.Application.ScreenUpdating = False
+        'Dim tableObj As XlTable = Nothing
+        'Try
+        '    tableObj = XlTable.Create()
+        '    tableObj.Render()
+        'Catch tnfex As TableNotFoundException
+        '    MsgBox("Table cannot be found!")
+        'Catch ex As Exception
+        '    logger.Error(ex)
+        '    If tableObj IsNot Nothing Then
+        '        tableObj.Revoke()
+        '    End If
+        '    MsgBox(ex.Message)
+        'End Try
+        'Globals.ThisAddIn.Application.ScreenUpdating = True
+        logger.Debug("BtnSqlEditor_Click End")
+    End Sub
+
+    Public Function BtnSqlEditor_GetEnabled(ByVal control As Office.IRibbonControl) As Boolean
+        Globals.ThisAddIn.HotKeys("SqlEditor").Enabled = CurDataSource() IsNot Nothing
+        Return CurDataSource() IsNot Nothing
+    End Function
 
     Public Sub BtnSelect_Click(ByVal control As Office.IRibbonControl)
         logger.Debug("BtnSelect_Click Start")
@@ -559,6 +593,23 @@ Public Class Ribbon
 
     End Sub
 
+    Public Sub TglBtnDesignMode_Click(ByVal control As Office.IRibbonControl, isPressed As Boolean)
+        Try
+            DesignMode = isPressed
+            ribbon.InvalidateControl("GrpOperations")
+        Catch ex As Exception
+            logger.Debug(ex)
+        End Try
+    End Sub
+
+    Public Function SwitchDesignMode_GetVisible(ByVal control As Office.IRibbonControl) As Boolean
+        If control.Id = "GrpOperations" And DesignMode Then
+            Return False
+        End If
+
+        Return True
+    End Function
+
     Public Sub TglBtnStyleSettings_Click(ByVal control As Office.IRibbonControl, isPressed As Boolean)
         Globals.ThisAddIn.TglBtnStyleSettingsPressed(Globals.ThisAddIn.Application.ActiveWorkbook) = isPressed
         Globals.ThisAddIn.CtpSettings(Globals.ThisAddIn.Application.ActiveWorkbook).Visible = isPressed
@@ -685,6 +736,7 @@ Public Class Ribbon
         End If
         _curDataSource = Nothing
         ribbon.InvalidateControl("DMenuDatabase")
+        ribbon.InvalidateControl("BtnSqlEditor")
         ribbon.InvalidateControl("BtnSelect")
         'ribbon.InvalidateControl("BtnInsert")
         ribbon.InvalidateControl("SpltBtnInsert")
@@ -755,12 +807,13 @@ Public Class Ribbon
         'End Using
 
         'Using frm = New FrmConnections
-        Globals.ThisAddIn.DlgConnections.ShowDialog()
+        Globals.ThisAddIn.DlgConnections.showDialog2("connections")
         'End Using
 
         ' update ribbon
         _curDataSource = Nothing
         ribbon.InvalidateControl("DMenuDatabase")
+        ribbon.InvalidateControl("BtnSqlEditor")
         ribbon.InvalidateControl("BtnSelect")
         ribbon.InvalidateControl("SpltBtnInsert")
         ribbon.InvalidateControl("SpltBtnDeleteOrTruncate")
@@ -987,6 +1040,8 @@ Public Class Ribbon
                 tt = TextType.TT_RB_ABOUT
             Case "BtnImport"
                 tt = TextType.TT_RB_IMPORT
+            Case "BtnSqlEditor"
+                tt = TextType.TT_RB_SQL_EDITOR
         End Select
 
         Return TextService.GetTextByProperty(tt).Replace("\r\n", vbCrLf)

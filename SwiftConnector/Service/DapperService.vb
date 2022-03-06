@@ -65,12 +65,20 @@ Public Class DapperService
         logger.Debug("Execute End")
     End Sub
 
-    Private Function GetOpenConnection() As IDbConnection
-        Dim db As IDbConnection = GetCurrentConnection()
-        logger.Debug(String.Format("connecting to {0}", db.ConnectionString))
-        db.Open()
-        logger.Debug(String.Format("connected to {0}", db.ConnectionString))
-        Return db
+    Public Function ExecuteReader(callback As Action(Of IDataReader), txHash As Integer?, sql As String, Optional param As Object = Nothing) As Integer Implements IDapperService.ExecuteReader
+        logger.Debug("ExecuteReader Start")
+        Return beginTx(Sub(db, tx)
+                           callback.Invoke(db.ExecuteReader(sql, param, transaction:=tx))
+                           logger.Debug("ExecuteReader End")
+                       End Sub, txHash)
+    End Function
+
+    Public Function Execute(callback As Action(Of Integer), txHash As Integer?, sql As String, Optional param As Object = Nothing) As Integer Implements IDapperService.Execute
+        logger.Debug("Execute Start")
+        Return beginTx(Sub(db, tx)
+                           callback.Invoke(db.Execute(sql, param:=param, transaction:=tx))
+                           logger.Debug("Execute End")
+                       End Sub, txHash)
     End Function
 
     'Public Function GetParameterPrefix() As String Implements IDapperService.GetParameterPrefix

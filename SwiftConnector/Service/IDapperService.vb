@@ -30,5 +30,9 @@ Public Interface IDapperService
 
     Sub Execute(callback As Action(Of Integer), sql As String, Optional param As Object = Nothing)
 
+    Function ExecuteReader(callback As Action(Of IDataReader), txHash As Integer?, sql As String, Optional param As Object = Nothing) As Integer
+
+    Function Execute(callback As Action(Of Integer), txHash As Integer?, sql As String, Optional param As Object = Nothing) As Integer
+
     'Function GetParameterPrefix() As String
 End Interface

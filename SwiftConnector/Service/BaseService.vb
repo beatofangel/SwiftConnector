@@ -19,8 +19,34 @@
 ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ' SOFTWARE.
 
+Imports System.Collections.Concurrent
+Imports System.Data
+Imports System.Transactions
 Imports log4net
 
 Public MustInherit Class BaseService
     Protected Shared logger As ILog = LogManager.GetLogger(Reflection.MethodBase.GetCurrentMethod().DeclaringType)
+    Protected Shared txStore As New ConcurrentDictionary(Of Integer, IDbTransaction)
+
+    Protected Function beginTx(callback As Action(Of IDbConnection, IDbTransaction), Optional txHash As Integer? = Nothing) As Integer
+        Dim txKey = txHash
+        Using db As IDbConnection = GetOpenConnection()
+            If txKey Is Nothing Or Not txStore.ContainsKey(txKey) Then
+                Dim tx As IDbTransaction = db.BeginTransaction
+                txKey = tx.GetHashCode
+                txStore.TryAdd(txKey, tx)
+            End If
+            callback.Invoke(db, txStore(txKey))
+        End Using
+        Return txKey
+    End Function
+
+    Protected Function GetOpenConnection() As IDbConnection
+        Dim db As IDbConnection = GetCurrentConnection()
+        logger.Debug(String.Format("connecting to {0}", db.ConnectionString))
+        db.Open()
+        logger.Debug(String.Format("connected to {0}", db.ConnectionString))
+        Return db
+    End Function
+
 End Class

@@ -35,8 +35,13 @@ Public Class FrmConnections
         Me.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size
     End Sub
 
-    Private Sub FrmConnections_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        hb.Fragment = "connections"
-    End Sub
+    'Private Sub FrmConnections_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    '    hb.Fragment = "connections"
+    'End Sub
+
+    Public Function showDialog2(fragment As String) As DialogResult
+        hb.Fragment = fragment
+        Return Me.ShowDialog()
+    End Function
 
 End Class

@@ -22,6 +22,7 @@
 Imports System.Data
 
 Public Class SQLiteDbTypeTranslatorFactory
+    Inherits BaseService
     Implements IDbTypeTranslatorFactory
 
     Public Function Format(dbType As DbType, val As String) As Object Implements IDbTypeTranslatorFactory.Format
@@ -38,6 +39,17 @@ Public Class SQLiteDbTypeTranslatorFactory
         Dim rst As DbType
 
         Dim strDbType = independantDbType
+        rst = Convert2DbType(strDbType)
+
+        Return rst
+    End Function
+
+    Public Function Parse(dbType As String) As DbType Implements IDbTypeTranslatorFactory.Parse
+        Return Convert2DbType(dbType)
+    End Function
+
+    Private Function Convert2DbType(strDbType As String) As DbType
+        Dim rst As DbType
         Select Case strDbType
             Case "TEXT"
                 rst = DbType.String
@@ -54,8 +66,6 @@ Public Class SQLiteDbTypeTranslatorFactory
             Case Else
                 rst = DbType.String
         End Select
-
         Return rst
     End Function
-
 End Class

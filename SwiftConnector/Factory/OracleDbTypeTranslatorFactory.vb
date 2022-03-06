@@ -24,6 +24,7 @@ Imports System.Text.RegularExpressions
 Imports Oracle.ManagedDataAccess.Client
 
 Public Class OracleDbTypeTranslatorFactory
+    Inherits BaseService
     Implements IDbTypeTranslatorFactory
 
     Public Function Format(dbType As DbType, val As String) As Object Implements IDbTypeTranslatorFactory.Format
@@ -71,63 +72,75 @@ Public Class OracleDbTypeTranslatorFactory
         End If
 
         If [Enum].TryParse(strDbType, True, oDbType) Then
-            Select Case oDbType
-                Case OracleDbType.BFile
-                    rst = DbType.Object
-                Case OracleDbType.Blob
-                    rst = DbType.Object
-                Case OracleDbType.Byte
-                    rst = DbType.Byte
-                Case OracleDbType.Char
-                    rst = DbType.StringFixedLength
-                Case OracleDbType.Clob
-                    rst = DbType.Object
-                Case OracleDbType.Date
-                    rst = DbType.Date
-                Case OracleDbType.Decimal
-                    rst = DbType.Decimal
-                Case OracleDbType.Double
-                    rst = DbType.Double
-                Case OracleDbType.Int16
-                    rst = DbType.Int16
-                Case OracleDbType.Int32
-                    rst = DbType.Int32
-                Case OracleDbType.Int64
-                    rst = DbType.Int64
-                Case OracleDbType.IntervalDS
-                    'rst = DbType.TimeSpan
-                    Throw New NotImplementedException(strDbType & " is not currently supported!")
-                Case OracleDbType.IntervalYM
-                    rst = DbType.Int64
-                Case OracleDbType.Long
-                    rst = DbType.String
-                Case OracleDbType.LongRaw
-                    rst = DbType.Binary
-                Case OracleDbType.NChar
-                    rst = DbType.StringFixedLength
-                Case OracleDbType.NClob
-                    rst = DbType.Object
-                Case OracleDbType.NVarchar2
-                    rst = DbType.String
-                Case OracleDbType.Raw
-                    rst = DbType.Binary
-                Case OracleDbType.RefCursor
-                    rst = DbType.Object
-                Case OracleDbType.Single
-                    rst = DbType.Single
-                Case OracleDbType.TimeStamp
-                    rst = DbType.DateTime
-                Case OracleDbType.TimeStampLTZ
-                    rst = DbType.DateTime
-                Case OracleDbType.TimeStampTZ
-                    rst = DbType.DateTime
-                Case OracleDbType.Varchar2
-                    rst = DbType.String
-                Case OracleDbType.XmlType
-                    rst = DbType.String
-            End Select
+            rst = Convert2DbType(oDbType)
+        Else
+            logger.Debug("type translate failed from type [" & strDbType & "]")
         End If
 
+        Return rst
+    End Function
+
+    Public Function Parse(dbType As String) As DbType Implements IDbTypeTranslatorFactory.Parse
+        Return Convert2DbType([Enum].Parse(GetType(OracleDbType), dbType, True))
+    End Function
+
+    Private Function Convert2DbType(oDbType As OracleDbType) As DbType
+        Dim rst As DbType
+        Select Case oDbType
+            Case OracleDbType.BFile
+                rst = DbType.Object
+            Case OracleDbType.Blob
+                rst = DbType.Object
+            Case OracleDbType.Byte
+                rst = DbType.Byte
+            Case OracleDbType.Char
+                rst = DbType.StringFixedLength
+            Case OracleDbType.Clob
+                rst = DbType.Object
+            Case OracleDbType.Date
+                rst = DbType.Date
+            Case OracleDbType.Decimal
+                rst = DbType.Decimal
+            Case OracleDbType.Double
+                rst = DbType.Double
+            Case OracleDbType.Int16
+                rst = DbType.Int16
+            Case OracleDbType.Int32
+                rst = DbType.Int32
+            Case OracleDbType.Int64
+                rst = DbType.Int64
+            Case OracleDbType.IntervalDS
+                'rst = DbType.TimeSpan
+                Throw New NotImplementedException(OracleDbType.IntervalDS.ToString & " is not currently supported!")
+            Case OracleDbType.IntervalYM
+                rst = DbType.Int64
+            Case OracleDbType.Long
+                rst = DbType.String
+            Case OracleDbType.LongRaw
+                rst = DbType.Binary
+            Case OracleDbType.NChar
+                rst = DbType.StringFixedLength
+            Case OracleDbType.NClob
+                rst = DbType.Object
+            Case OracleDbType.NVarchar2
+                rst = DbType.String
+            Case OracleDbType.Raw
+                rst = DbType.Binary
+            Case OracleDbType.RefCursor
+                rst = DbType.Object
+            Case OracleDbType.Single
+                rst = DbType.Single
+            Case OracleDbType.TimeStamp
+                rst = DbType.DateTime
+            Case OracleDbType.TimeStampLTZ
+                rst = DbType.DateTime
+            Case OracleDbType.TimeStampTZ
+                rst = DbType.DateTime
+            Case OracleDbType.Varchar2
+                rst = DbType.String
+            Case OracleDbType.XmlType
+                rst = DbType.String
+        End Select
         Return rst
     End Function
 End Class
