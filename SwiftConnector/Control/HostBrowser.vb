@@ -227,10 +227,10 @@ Public Class HostBrowser
                 DoResponse(api, cb, Function()
                                         Dim jsonObj = JsonConvert.DeserializeObject(Of JObject)(args)
                                         If dsService.SwitchDataSourceTo(jsonObj.GetValue("Id").ToString) Then
-                                            Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
-                                            Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", jsonObj.GetValue("Name").ToString)
-                                            Dim logo = "Resources/Icon/" & DataSourceDic(jsonObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
-                                            Toast(title, content, logo)
+                                            'Dim title = textService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
+                                            'Dim content = textService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", jsonObj.GetValue("Name").ToString)
+                                            'Dim logo = "Resources/Icon/" & DataSourceDic(jsonObj.GetValue("Type").ToObject(Of DataSourceType)) & "_large_64.png"
+                                            'Toast(title, content, logo)
                                             'Toast(title, content)
                                             Return JsonConvert.SerializeObject(New Response(True, api))
                                         Else

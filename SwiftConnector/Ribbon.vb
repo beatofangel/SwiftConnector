@@ -709,7 +709,7 @@ Public Class Ribbon
     End Function
 
     Public Function DMenuDatabase_GetLabel(ByVal control As Office.IRibbonControl) As String
-        Return If(CurDataSource Is Nothing, "N/A", If(CurDataSource.Name.Length > 10, Left(CurDataSource.Name, 7) & "···", CurDataSource.Name))
+        Return If(CurDataSource Is Nothing, "N/A", If(CurDataSource.Name.Length > 10, Left(CurDataSource.Name, 7) & "...", CurDataSource.Name))
     End Function
 
     Public Function DMenuDatabase_DsTypeGetImage(ByVal control As Office.IRibbonControl) As Bitmap
@@ -728,10 +728,10 @@ Public Class Ribbon
         If switchRst Then
             _curDataSource = control.Id
 
-            Dim title = TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
-            Dim content = TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name)
-            Dim logo = "Resources/Icon/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
-            Toast(title, content, logo)
+            'Dim title = TextService.GetTextByProperty(TextType.TT_MSG_SWITCH_SUCCESS)
+            'Dim content = TextService.GetTextByProperty(TextType.TT_MSG_CONNECTION_IN_USE).Replace("{0}", CurDataSource.Name)
+            'Dim logo = "Resources/Icon/" & DataSourceDic(CurDataSource.Type) & "_large_64.png"
+            'Toast(title, content, logo)
             'Toast(title, content)
         End If
         _curDataSource = Nothing
